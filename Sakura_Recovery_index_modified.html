@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sakura Recovery & Repair Service</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,"Noto Sans JP",sans-serif;background:linear-gradient(180deg,#fff7fa 0%,#ffffff 42%,#eef7ff 100%);color:#082957;overflow-x:hidden}
+.lang-wrap{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:99999;background:#fff;border:2px solid #0b4da2;border-radius:999px;padding:8px 14px;box-shadow:0 8px 30px rgba(0,43,92,.16);display:flex;align-items:center;gap:10px}
+.lang-wrap span{color:#0b4da2;font-weight:bold;font-size:14px}
+.lang-select{background:#fff;color:#082957;border:2px solid #0b4da2;padding:9px 14px;border-radius:999px;font-weight:bold;font-size:15px;outline:none;min-width:230px}
+.hero{
+min-height:100vh;
+padding:120px 7% 60px;
+text-align:left;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:flex-start;
+position:relative;
+overflow:hidden;
+background:
+linear-gradient(90deg,
+#fff2f6 0%,
+#fff7fa 24%,
+rgba(255,255,255,.68) 48%,
+rgba(255,238,244,.34) 70%,
+rgba(255,255,255,.08) 100%),
+radial-gradient(circle at 0% 50%,rgba(255,182,205,.34),rgba(255,255,255,0) 46%),
+radial-gradient(circle at 100% 50%,rgba(255,182,205,.22),rgba(255,255,255,0) 42%),
+url("recovery-hero-truck.webp") center right/contain no-repeat;
+}
+.hero:after{content:"";position:absolute;inset:0;background:transparent;pointer-events:none}
+.hero>*{position:relative;z-index:2}
+
+.logo{font-size:28px;font-weight:bold;color:#d70934;margin-bottom:20px;text-shadow:none}
+h1{font-size:52px;line-height:1.3;color:#082957;margin-bottom:20px;max-width:760px;text-shadow:none}
+.hero p{font-size:21px;line-height:1.8;max-width:760px;margin-bottom:12px;color:#163b70;text-shadow:none;font-weight:700}
+.btn{display:inline-block;background:#d70934;padding:18px 35px;border-radius:14px;color:white;font-size:20px;font-weight:bold;text-decoration:none;margin:10px 10px 10px 0;box-shadow:0 10px 24px rgba(215,9,52,.22)}
+.section{padding:80px 20px;background:linear-gradient(180deg,#fff7fa 0%,#eef7ff 100%)}.dark{background:linear-gradient(180deg,#fff2f6 0%,#eaf3ff 100%)}
+.section h2{text-align:center;font-size:40px;color:#0b4da2;margin-bottom:45px}
+.grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+.card{background:linear-gradient(180deg,#ffffff,#f8fbff);padding:32px;border-radius:22px;border:1px solid #d8e7ff;box-shadow:0 14px 32px rgba(0,61,130,.09);color:#082957}
+.card h3{font-size:24px;margin-bottom:15px;color:#d70934}.card p{line-height:1.8;font-size:17px;color:#163b70}
+.form{max-width:980px;margin:auto;background:linear-gradient(180deg,#ffffff 0%,#f7fbff 100%);padding:44px;border-radius:30px;border:2px solid #d8e9ff;box-shadow:0 22px 55px rgba(0,70,160,.13),0 0 55px rgba(255,160,190,.18);color:#082957;position:relative;overflow:hidden}
+.form h3{font-size:28px;margin:34px 0 24px;color:#0b4da2;background:linear-gradient(90deg,#eaf4ff,#fff3f7);border-left:7px solid #d70934;padding:14px 18px;border-radius:16px;box-shadow:0 8px 22px rgba(0,66,145,.07)}
+label{display:block;margin-bottom:10px;font-weight:bold;color:#0b4da2}.req{color:#d70934}
+input,select,textarea{width:100%;padding:17px 16px;margin-bottom:22px;border-radius:16px;border:2px solid #dce9ff;font-size:16px;transition:.25s;background:#ffffff;color:#082957;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 18px rgba(0,66,145,.05)}
+
+input:focus,select:focus,textarea:focus{
+outline:none;
+border-color:#2b74ff;
+box-shadow:0 0 0 4px rgba(43,116,255,.14),0 12px 26px rgba(0,66,145,.10);
+background:#fff;
+}
+
+.field-error{background:#fff0f0!important;border:3px solid #ff1f1f!important;box-shadow:0 0 0 4px rgba(255,0,0,.18),0 0 18px rgba(255,0,0,.55)!important}
+.error-note{display:none;color:#ff4d4d;font-weight:bold;margin-top:-12px;margin-bottom:15px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+button{width:100%;padding:18px;border:none;background:#ffd000;color:#111;font-size:20px;font-weight:bold;border-radius:12px;cursor:pointer}
+.notice{background:#f5faff;border:2px solid #cfe2ff;padding:20px;border-radius:15px;margin:20px 0;color:#082957}
+.contact{text-align:center}.phone{font-size:38px;font-weight:bold;color:#e63946;margin-bottom:15px}
+.qr-box{margin:30px auto 0;max-width:360px;background:#fff;color:#111;border-radius:22px;padding:20px;border:3px solid #ffd000;box-shadow:0 12px 35px #0007}
+.qr-box img{width:210px;max-width:100%;border-radius:12px;background:white}
+.qr-box a{display:inline-block;margin-top:12px;background:#06c755;color:white;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:bold}
+footer{background:#082957;text-align:center;padding:30px;color:#fff}
+.fixed{position:fixed;right:18px;bottom:18px;z-index:999}.fixed a{display:block;background:#19c463;color:white;padding:16px 24px;border-radius:999px;font-weight:bold;text-decoration:none}
+.popup-bg{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:100000;display:none;align-items:center;justify-content:center;padding:20px}
+.popup-card{max-width:520px;width:100%;background:linear-gradient(145deg,#fff,#fff8d8,#ffe7f0);color:#111;border-radius:28px;padding:0 0 28px;text-align:center;border:3px solid #ffd000;box-shadow:0 25px 80px #000;overflow:hidden}
+.popup-img{width:100%;height:230px;object-fit:cover;background:#ddd}
+.popup-icon{font-size:46px;margin-top:-28px;background:white;width:78px;height:78px;line-height:78px;border-radius:50%;margin-left:auto;margin-right:auto;border:3px solid #ffd000}
+.popup-card h3{font-size:28px;color:#b8860b;margin:12px}
+.popup-card p{font-size:17px;line-height:1.7;color:#333;padding:0 24px}
+.popup-ok{margin-top:22px;display:inline-block;background:linear-gradient(135deg,#ffd000,#ff7a00,#e63946);color:white;padding:14px 34px;border-radius:999px;font-weight:bold;cursor:pointer}
+
+/* AI Customer Support Bot */
+.ai-btn{position:fixed;left:18px;bottom:18px;z-index:99999;background:#ffd000;color:#111;padding:15px 22px;border-radius:999px;font-weight:bold;cursor:pointer;box-shadow:0 8px 25px #0007}
+.ai-box{position:fixed;left:18px;bottom:82px;width:410px;max-width:92vw;background:white;border-radius:18px;overflow:hidden;display:none;z-index:99999;box-shadow:0 15px 40px #0008;border:2px solid #ffd000}
+.ai-head{background:#111;color:#ffd000;padding:14px;font-weight:bold;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ai-close{cursor:pointer;color:#fff;background:#e63946;border-radius:50%;width:24px;height:24px;line-height:24px;text-align:center}
+.ai-body{height:390px;overflow-y:auto;padding:12px;background:#fff8df;color:#111}
+.ai-msg{padding:10px 12px;margin:8px 0;border-radius:14px;font-size:14px;line-height:1.55}.ai-bot{background:white;border:1px solid #ffd000}.ai-user{background:#ffd000;color:#111;margin-left:40px}
+.ai-input-wrap{display:flex;border-top:1px solid #ddd}.ai-input{flex:1;border:none;padding:13px;outline:none;font-size:14px;margin:0}.ai-send,.ai-voice{background:#ffd000;color:#111;padding:13px 12px;font-weight:bold;cursor:pointer;border-left:1px solid #e5bd00}
+.ai-quick{display:block;margin:6px 0;padding:10px;border-radius:10px;border:1px solid #ffd000;background:white;color:#111;font-weight:bold;cursor:pointer;text-align:center}
+.ai-lang-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.ai-small{font-size:12px;color:#555;margin-top:5px}
+.ai-pay{display:block;margin-top:8px;background:#19c463;color:white!important;text-decoration:none;padding:10px;border-radius:10px;font-weight:bold;text-align:center}
+
+.payment-policy-box{background:linear-gradient(180deg,#ffffff,#f6fbff)!important;border:2px solid #0b4da2!important;color:#082957!important;box-shadow:0 18px 42px rgba(0,66,145,.10),0 0 34px rgba(255,170,198,.12)!important}
+.payment-title{color:#0b4da2!important;font-size:28px!important;text-align:center!important;margin-bottom:20px!important}
+.payment-options{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:15px 0 22px}
+.payment-card-option{background:#ffffff!important;border:2px solid #0b4da2!important;border-radius:16px!important;padding:18px!important;color:#082957!important;display:flex!important;align-items:center!important;gap:12px!important;cursor:pointer!important;font-weight:bold!important;margin:0!important}
+.payment-card-option input{width:auto!important;margin:0!important;transform:scale(1.35);accent-color:#ffd000}
+.payment-card-option span{color:#082957!important;font-size:17px!important}
+.inspection-rule-box{background:#ffffff!important;border:2px solid #0b4da2!important;border-radius:18px!important;padding:22px!important;color:#082957!important;line-height:1.85!important}
+.inspection-rule-box h4{color:#0b4da2!important;font-size:22px!important;margin-bottom:15px!important}
+.inspection-rule-box p{color:#082957!important;margin:8px 0!important}
+.customer-says-box{background:#1c1c1c!important;border-radius:14px!important;padding:16px!important;margin:18px 0!important;color:#fff!important}
+.payment-warning-box{background:#4a0000!important;border:2px solid #ff4d4d!important;color:#fff!important;border-radius:14px!important;padding:16px!important;font-size:18px!important;font-weight:bold!important;margin:18px 0!important}
+.payment-supported-box{background:#e9fff2!important;border:2px solid #00aa55!important;color:#063f22!important;border-radius:14px!important;padding:16px!important;font-weight:bold!important;margin-top:18px!important}
+@media(max-width:700px){.payment-options{grid-template-columns:1fr}.payment-title{font-size:24px!important}.inspection-rule-box{padding:16px!important}}
+@media(max-width:700px){.ai-box{left:10px;right:10px;bottom:78px;width:auto}.ai-btn{left:12px;bottom:14px;padding:13px 18px}}
+
+@media(max-width:700px){.lang-wrap{top:8px;width:94%;justify-content:center;border-radius:16px}.lang-select{min-width:170px;font-size:14px}h1{font-size:32px}.hero p{font-size:17px}.grid2{grid-template-columns:1fr}.section h2{font-size:30px}.phone{font-size:28px}}
+
+.pay-action-wrap{margin:22px 0;text-align:center}
+.pay-now-btn{display:block;width:100%;max-width:620px;margin:18px auto 10px;background:linear-gradient(135deg,#16c65f,#0a9f49);color:#fff!important;text-decoration:none;border:3px solid #fff;border-radius:20px;padding:22px 28px;font-size:28px;font-weight:900;box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 20px rgba(22,198,95,.35);transition:.2s}
+.pay-now-btn:hover{transform:translateY(-2px) scale(1.01);filter:brightness(1.08)}
+.pay-card-note{font-size:16px;line-height:1.7;color:#063f22;background:#e9fff2;border:1px solid #00aa55;border-radius:14px;padding:14px;margin:12px auto;max-width:620px}
+.ai-welcome-message{background:#ffffff;border:2px solid #cfe2ff;border-radius:18px;padding:18px;margin:18px 0;color:#082957;line-height:1.75;font-size:16px}
+.ai-welcome-message b{color:#0b4da2}
+
+.payment-policy-message{font-size:17px!important;line-height:1.9!important;text-align:left!important;white-space:normal!important}
+[dir="rtl"] .payment-policy-message{text-align:right!important}
+
+
+/* FINAL BUTTON LAYOUT UPDATE */
+.send-request-above-payment{
+  margin:26px 0 22px!important;
+  text-align:center!important;
+}
+.send-request-main-btn{
+  display:block!important;
+  width:100%!important;
+  max-width:720px!important;
+  margin:0 auto!important;
+  padding:24px 32px!important;
+  border:none!important;
+  border-radius:22px!important;
+  background:linear-gradient(135deg,#ffd000,#ffb300,#ff7a00)!important;
+  color:#111!important;
+  font-size:30px!important;
+  font-weight:900!important;
+  cursor:pointer!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.50),0 0 24px rgba(255,208,0,.45)!important;
+  letter-spacing:.5px!important;
+}
+.send-request-main-btn:hover{
+  transform:translateY(-2px) scale(1.01)!important;
+  filter:brightness(1.08)!important;
+}
+.payment-bottom-wrap{
+  max-width:950px;
+  margin:0 auto 34px;
+  padding:0 20px;
+  text-align:center;
+}
+.payment-action-title{color:#0b4da2;font-size:26px;font-weight:900;margin:0 0 14px}
+.payment-final-btn{
+  position:relative;
+  display:block!important;
+  width:100%!important;
+  max-width:720px!important;
+  margin:0 auto 12px!important;
+  padding:24px 34px!important;
+  border:3px solid #fff!important;
+  border-radius:22px!important;
+  background:linear-gradient(135deg,#17c964,#00a84f,#087a3b)!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  font-size:32px!important;
+  font-weight:900!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.55),0 0 28px rgba(23,201,100,.45)!important;
+  overflow:hidden!important;
+}
+.payment-final-btn:before{
+  content:"👉";
+  position:absolute;
+  left:18px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:38px;
+  animation:fingerMove 1s infinite ease-in-out;
+}
+.payment-final-btn:after{
+  content:"👈";
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:38px;
+  animation:fingerMoveRight 1s infinite ease-in-out;
+}
+@keyframes fingerMove{
+  0%,100%{transform:translate(0,-50%)}
+  50%{transform:translate(10px,-50%)}
+}
+@keyframes fingerMoveRight{
+  0%,100%{transform:translate(0,-50%)}
+  50%{transform:translate(-10px,-50%)}
+}
+.payment-final-note{
+  color:#fff;
+  background:#082916;
+  border:2px solid #00cc66;
+  border-radius:14px;
+  padding:14px;
+  max-width:720px;
+  margin:12px auto 0;
+  font-weight:700;
+  line-height:1.6;
+}
+@media(max-width:700px){
+  .send-request-main-btn{font-size:22px!important;padding:20px 18px!important}
+  .payment-final-btn{font-size:24px!important;padding:22px 54px!important}
+  .payment-final-btn:before,.payment-final-btn:after{font-size:28px}
+}
+
+
+.inspection-fee-box{background:linear-gradient(135deg,#ffffff 0%,#f0f7ff 58%,#fff3f7 100%);border:2px solid #0b4da2;border-radius:24px;padding:28px;margin:34px 0 26px;color:#082957;box-shadow:0 18px 42px rgba(0,66,145,.14),0 0 38px rgba(255,170,198,.16)}
+.inspection-fee-box h3{text-align:center;color:#0b4da2;font-size:28px;margin:0 0 10px}
+.inspection-fee-box .fee-note{text-align:center;font-weight:700;margin-bottom:18px;color:#163b70}
+.inspection-fee-box label{color:#0b4da2;font-weight:900}
+.inspection-fee-box input{background:#fff;border:2px solid #0b4da2}
+.fee-result{background:linear-gradient(135deg,#073b7a,#0b4da2);border:2px solid #7db7ff;border-radius:18px;padding:20px;text-align:center;font-size:28px;font-weight:900;color:#fff;margin-bottom:16px;box-shadow:0 12px 28px rgba(11,77,162,.24)}
+.fee-table{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fee-table div{text-align:center;padding:16px;background:#ffffff;border:1px solid #cfe2ff;border-radius:16px;font-weight:900;color:#082957;box-shadow:0 8px 18px rgba(0,66,145,.06)}
+@media(max-width:700px){.fee-table{grid-template-columns:1fr}.hero{background-position:center bottom;background-size:100% auto;padding-top:130px;text-align:center;align-items:center}.hero p,h1{max-width:100%}}
+
+
+/* Payment unlock flow: hidden until request form is successfully validated and submitted */
+.payment-unlock-message{
+  max-width:720px;
+  margin:14px auto 0;
+  padding:14px 18px;
+  border-radius:14px;
+  background:#fff7da;
+  border:2px solid #ffd000;
+  color:#082957;
+  font-weight:800;
+  text-align:center;
+}
+
+
+/* =========================================================
+   FINAL RESPONSIVE PATCH — PC + TABLET + MOBILE EASY OPERATE
+   Added by ChatGPT for Sakura Recovery
+========================================================= */
+:root{
+  --safe-pad: clamp(14px, 4vw, 32px);
+}
+
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden!important;
+  -webkit-text-size-adjust:100%;
+}
+
+img,video,iframe{
+  max-width:100%;
+  height:auto;
+}
+
+.hero,
+.section,
+.payment-bottom-wrap,
+.form,
+.card,
+.notice,
+.inspection-fee-box,
+.inspection-rule-box{
+  max-width:100%;
+}
+
+.form{
+  width:min(980px, calc(100% - 28px));
+  padding:clamp(18px, 4vw, 44px)!important;
+}
+
+.grid,
+.grid2,
+.payment-options,
+.fee-table{
+  min-width:0;
+}
+
+input,select,textarea,button{
+  max-width:100%;
+  font-size:16px!important; /* prevents iPhone zoom */
+}
+
+textarea{
+  resize:vertical;
+}
+
+button,
+.btn,
+.pay-now-btn,
+.payment-final-btn,
+.send-request-main-btn,
+.fixed a,
+.ai-btn,
+.popup-ok{
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* Better PC layout */
+@media (min-width: 1000px){
+  .hero{
+    min-height:88vh;
+  }
+  .payment-bottom-wrap{
+    max-width:980px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 900px){
+  .hero{
+    min-height:auto!important;
+    padding:120px var(--safe-pad) 50px!important;
+    background:
+      linear-gradient(180deg,rgba(255,247,250,.92),rgba(255,255,255,.88)),
+      url("recovery-hero-truck.webp") center bottom/92% auto no-repeat!important;
+    text-align:center!important;
+    align-items:center!important;
+  }
+  .hero h1{
+    font-size:clamp(30px, 6vw, 42px)!important;
+  }
+  .hero p{
+    font-size:clamp(16px, 3.4vw, 20px)!important;
+  }
+  .section{
+    padding:54px var(--safe-pad)!important;
+  }
+  .section h2{
+    font-size:clamp(28px, 5vw, 36px)!important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px){
+  .lang-wrap{
+    position:sticky!important;
+    top:6px!important;
+    left:auto!important;
+    transform:none!important;
+    width:calc(100% - 18px)!important;
+    margin:8px auto!important;
+    border-radius:18px!important;
+    padding:8px 10px!important;
+    gap:7px!important;
+  }
+  .lang-wrap span{
+    font-size:12px!important;
+    white-space:nowrap;
+  }
+  .lang-select{
+    min-width:0!important;
+    width:100%!important;
+    font-size:14px!important;
+    padding:10px 9px!important;
+  }
+
+  .hero{
+    padding:34px 16px 235px!important;
+    background:
+      linear-gradient(180deg,rgba(255,247,250,.94),rgba(255,255,255,.90) 62%,rgba(255,247,250,.55)),
+      url("recovery-hero-truck.webp") center bottom/105% auto no-repeat!important;
+  }
+  .logo{
+    font-size:21px!important;
+    margin-bottom:12px!important;
+  }
+  h1,.hero h1{
+    font-size:28px!important;
+    line-height:1.25!important;
+    margin-bottom:14px!important;
+  }
+  .hero p{
+    font-size:16px!important;
+    line-height:1.65!important;
+    font-weight:700!important;
+  }
+  .btn{
+    width:100%;
+    margin:8px 0!important;
+    padding:16px 18px!important;
+    font-size:18px!important;
+    text-align:center;
+    border-radius:16px!important;
+  }
+
+  .section{
+    padding:42px 12px!important;
+  }
+  .grid{
+    grid-template-columns:1fr!important;
+    gap:16px!important;
+  }
+  .card{
+    padding:22px!important;
+    border-radius:18px!important;
+  }
+  .card h3{
+    font-size:21px!important;
+  }
+  .card p{
+    font-size:16px!important;
+  }
+
+  .form{
+    width:calc(100% - 14px)!important;
+    padding:18px 14px!important;
+    border-radius:22px!important;
+  }
+  .form h3{
+    font-size:22px!important;
+    padding:12px 14px!important;
+    margin:24px 0 16px!important;
+  }
+  .grid2{
+    grid-template-columns:1fr!important;
+    gap:0!important;
+  }
+  label{
+    font-size:15px!important;
+    margin-bottom:7px!important;
+  }
+  input,select,textarea{
+    padding:15px 14px!important;
+    margin-bottom:16px!important;
+    border-radius:14px!important;
+  }
+  .error-note{
+    margin-top:-8px!important;
+    margin-bottom:12px!important;
+  }
+
+  .inspection-fee-box{
+    padding:18px 14px!important;
+    border-radius:20px!important;
+    margin:24px 0 18px!important;
+  }
+  .inspection-fee-box h3{
+    font-size:22px!important;
+  }
+  .fee-result{
+    font-size:23px!important;
+    padding:16px 10px!important;
+  }
+  .fee-table{
+    grid-template-columns:1fr!important;
+  }
+
+  .send-request-main-btn{
+    font-size:22px!important;
+    padding:18px 14px!important;
+    border-radius:18px!important;
+  }
+  .payment-options{
+    grid-template-columns:1fr!important;
+  }
+  .payment-card-option{
+    padding:15px!important;
+  }
+  .payment-card-option span{
+    font-size:15px!important;
+  }
+  .inspection-rule-box{
+    padding:16px!important;
+  }
+  .inspection-rule-box h4{
+    font-size:20px!important;
+  }
+
+  .payment-bottom-wrap{
+    padding:0 10px!important;
+    margin-bottom:28px!important;
+  }
+  .payment-action-title{
+    font-size:24px!important;
+  }
+  .payment-final-btn{
+    font-size:23px!important;
+    line-height:1.25!important;
+    padding:20px 54px!important;
+    border-radius:20px!important;
+  }
+  .payment-final-btn:before,
+  .payment-final-btn:after{
+    font-size:27px!important;
+  }
+  .payment-final-note,
+  .payment-unlock-message{
+    font-size:14px!important;
+    padding:13px 10px!important;
+  }
+
+  .popup-bg{
+    padding:12px!important;
+  }
+  .popup-card{
+    width:min(96vw, 440px)!important;
+    border-radius:24px!important;
+  }
+  .popup-img{
+    height:180px!important;
+  }
+  .popup-card h3{
+    font-size:23px!important;
+  }
+  .popup-card p{
+    font-size:15px!important;
+    padding:0 16px!important;
+  }
+
+  .ai-box{
+    left:8px!important;
+    right:8px!important;
+    bottom:74px!important;
+    width:auto!important;
+    max-width:none!important;
+  }
+  .ai-body{
+    height:min(56vh, 380px)!important;
+  }
+  .ai-btn{
+    left:10px!important;
+    bottom:12px!important;
+    padding:13px 15px!important;
+    font-size:14px!important;
+  }
+  .fixed{
+    right:10px!important;
+    bottom:12px!important;
+  }
+  .fixed a{
+    padding:13px 18px!important;
+    font-size:14px!important;
+  }
+  .phone{
+    font-size:26px!important;
+  }
+}
+
+/* Very small phone */
+@media (max-width: 380px){
+  .hero{
+    padding-bottom:210px!important;
+  }
+  h1,.hero h1{
+    font-size:24px!important;
+  }
+  .payment-final-btn{
+    font-size:20px!important;
+    padding-left:46px!important;
+    padding-right:46px!important;
+  }
+  .payment-final-btn:before,
+  .payment-final-btn:after{
+    font-size:23px!important;
+  }
+}
+
+
+
+/* =========================================================
+   FINAL FORM VISIBILITY + MULTILANGUAGE SELECT PATCH
+   Dark borders for easy PC/mobile operation
+========================================================= */
+input, select, textarea{
+  border:3px solid #0b4da2!important;
+  background:#ffffff!important;
+  color:#082957!important;
+  box-shadow:0 6px 16px rgba(11,77,162,.10)!important;
+}
+input::placeholder, textarea::placeholder{
+  color:#5b6f8f!important;
+  opacity:1!important;
+}
+select{
+  cursor:pointer!important;
+  appearance:auto!important;
+}
+select option{
+  color:#082957!important;
+  background:#ffffff!important;
+  font-size:16px!important;
+}
+input:focus, select:focus, textarea:focus{
+  border-color:#003c91!important;
+  box-shadow:0 0 0 4px rgba(0,60,145,.18),0 10px 24px rgba(0,66,145,.16)!important;
+}
+.field-error{
+  border:3px solid #ff0000!important;
+  background:#fff1f1!important;
+}
+
+
+/* Sakura top logo */
+.sakura-top-logo{
+position:fixed;
+top:15px;
+right:15px;
+z-index:99999;
+width:180px;
+max-width:30vw;
+height:auto;
+}
+@media(max-width:768px){
+.sakura-top-logo{
+width:110px;
+top:8px;
+right:8px;
+}
+}
+
+</style>
+</head>
+<body>
+<img src="WEB9 (1) (4).webp" class="sakura-top-logo" alt="Sakura Recovery Logo">
+
+
+<div class="lang-wrap">
+<span>🌐 Language</span>
+<select class="lang-select" id="siteLang" onchange="changeLang(this.value)">
+<option value="ja">日本語 Japanese</option>
+<option value="en">English</option>
+<option value="zh">中文 Chinese</option>
+<option value="es">Español Spanish</option>
+<option value="ru">Русский Russian</option>
+<option value="vi">Tiếng Việt Vietnamese</option>
+<option value="ko">한국어 Korean</option>
+<option value="ar">العربية Arabic</option>
+<option value="ur">Roman Urdu</option>
+<option value="bn">বাংলা Bangla</option>
+<option value="fa">فارسی Persian</option>
+<option value="tr">Türkçe Turkish</option>
+<option value="si">සිංහල Sinhala</option>
+</select>
+</div>
+
+<section class="hero">
+<div class="logo">🌸 Sakura Recovery & Repair Service</div>
+<h1 data-t="heroTitle"></h1>
+<p data-t="heroText1"></p>
+<p data-t="heroText2"></p>
+<p><b data-t="hoursTitle"></b> <span data-t="hours"></span></p>
+<a class="btn" href="tel:07084455348">📞 070-8445-5348</a>
+<a class="btn" href="#requestForm" data-t="estimateBtn"></a>
+</section>
+
+<section class="section dark">
+<h2 data-t="servicesTitle"></h2>
+<div class="grid">
+<div class="card"><h3 data-t="s1"></h3><p data-t="s1p"></p></div>
+<div class="card"><h3 data-t="s2"></h3><p data-t="s2p"></p></div>
+<div class="card"><h3 data-t="s3"></h3><p data-t="s3p"></p></div>
+<div class="card"><h3 data-t="s4"></h3><p data-t="s4p"></p></div>
+</div>
+</section>
+
+<section class="section">
+<h2 data-t="formTitle"></h2>
+<form class="form" id="requestForm" novalidate>
+<h3 data-t="customerInfo"></h3>
+
+<div class="grid2">
+<div><label><span data-t="name"></span> <span class="req">*</span></label><input type="text" name="customer_name" required><div class="error-note">Required</div></div>
+<div><label><span data-t="phone"></span> <span class="req">*</span></label><input type="tel" name="phone" required><div class="error-note">Required</div></div>
+</div>
+
+<label><span data-t="fullAddress"></span> <span class="req">*</span></label>
+<textarea name="customer_full_address" rows="3" required></textarea><div class="error-note">Required</div>
+
+<div class="grid2">
+<div><label><span data-t="email"></span> <span class="req">*</span></label><input type="email" name="email" required><div class="error-note">Required</div></div>
+<div><label data-t="contactMethod"></label><select name="contact_method" data-select="contact_method"><option value="Phone">Phone</option><option value="WhatsApp">WhatsApp</option><option value="LINE">LINE</option><option value="Email">Email</option></select></div>
+</div>
+
+<h3 data-t="vehicleInfo"></h3>
+<div class="grid2">
+<div><label data-t="vehicleType"></label><select name="vehicle_type" data-select="vehicle_type"><option value="Car">Car</option><option value="Van">Van</option><option value="Truck">Truck</option><option value="Dump">Dump</option><option value="Bus">Bus</option><option value="Other">Other</option></select></div>
+<div><label><span data-t="vehicleName"></span> <span class="req">*</span></label><input type="text" name="vehicle_name" required><div class="error-note">Required</div></div>
+</div>
+
+<div class="grid2">
+<div><label data-t="maker"></label><input type="text" name="maker"></div>
+<div><label data-t="year"></label><input type="text" name="year"></div>
+</div>
+
+<label data-t="vin"></label><input type="text" name="vin_plate">
+<label data-t="condition"></label><select name="running_condition" data-select="running_condition"><option value="Running">Running</option><option value="Not starting">Not starting</option><option value="Cannot move">Cannot move</option><option value="Damaged">Damaged</option></select>
+
+<h3 data-t="problemInfo"></h3>
+<label><span data-t="vehicleProblem"></span> <span class="req">*</span></label>
+<select name="vehicle_problem" data-select="vehicle_problem" required>
+<option value="">Select problem</option>
+<option value="Engine not starting">Engine not starting</option>
+<option value="Battery dead">Battery dead</option>
+<option value="Tire problem">Tire problem</option>
+<option value="Oil leaking">Oil leaking</option>
+<option value="Brake problem">Brake problem</option>
+<option value="Accident / Damaged">Accident / Damaged</option>
+<option value="Port delivery">Port delivery</option>
+<option value="Other">Other</option>
+</select><div class="error-note">Required</div>
+
+<label data-t="detail"></label><textarea name="problem_detail" rows="5"></textarea>
+
+<h3 data-t="locationInfo"></h3>
+<label><span data-t="vehicleCurrentLocation"></span> <span class="req">*</span></label>
+<textarea name="vehicle_current_location" rows="3" required></textarea><div class="error-note">Required</div>
+
+<label>Google Map Link</label><input type="text" name="map_link">
+<label data-t="destination"></label><input type="text" name="destination_port" placeholder="Naha Port, Nakagusuku Port...">
+
+
+
+
+<div class="inspection-fee-box">
+  <h3 data-fee-title>🧮 Inspection Fee Calculator</h3>
+  <p class="fee-note" data-fee-note>Vehicle inspection fee is calculated by distance.</p>
+  <label for="distanceKm"><span data-fee-distance>Distance (km)</span> <span class="req">*</span></label>
+  <input type="number" id="distanceKm" name="inspection_distance_km" min="0" step="0.1" required placeholder="Enter distance in km (e.g. 4.5)"><div class="error-note">Required</div>
+  <input type="hidden" id="inspectionFeeYen" name="inspection_fee_yen" value="2000">
+  <div class="fee-result" id="feeResult">Estimated Fee: ¥2,000</div>
+  <div class="fee-table">
+    <div>0–3 km<br>¥2,000</div>
+    <div>3.1–6 km<br>¥4,000</div>
+    <div>6.1–9 km<br>¥6,000</div>
+  </div>
+</div>
+
+<div class="send-request-above-payment">
+<button type="submit" class="send-request-main-btn" data-t="submitBtn">📨 SEND REQUEST</button>
+</div>
+
+<div class="notice payment-policy-box">
+<h3 class="payment-title" id="paymentPolicyTitle">💳 Payment Policy</h3>
+
+<div class="ai-welcome-message payment-policy-message" id="paymentPolicyMessage">
+🌸 <b>Sakura Recovery Serviceへようこそ</b><br><br>
+当サイトをご覧いただき、誠にありがとうございます。<br><br>
+以下お見積もりフォームは、故障・不動車両の状況確認を行うための「実車確認およびスタッフ派遣」に関するお見積もり受付フォームです。<br><br>
+※車両移動費用・本土輸送費用・修理費用等は含まれておりません。<br><br>
+故障内容や車両状態により必要な対応が異なるため、まずはスタッフが現地にて実車確認を行い、搬送可否や必要対応を確認いたします。<br><br>
+なお、実車確認およびスタッフ派遣は、初回お見積もり費用のお支払い確認完了後に開始となります。<br><br>
+お客様へ安全かつ適切な対応をご案内するため、ご理解のほどよろしくお願いいたします。
+</div>
+
+<div class="payment-options">
+<label class="payment-card-option">
+<input type="checkbox" name="payment_method" value="VISA / MASTER CARD / DEBIT CARD">
+<span id="paymentCardLabel">💳 VISA / MASTER CARD / DEBIT CARD</span>
+</label>
+
+<label class="payment-card-option">
+<input type="checkbox" name="payment_method" value="PayPay">
+<span id="paymentPayPayLabel">📱 PayPay</span>
+</label>
+</div>
+
+<div class="inspection-rule-box">
+<h4 id="inspectionRuleTitle">🚗 Sakura Recovery Inspection Rule</h4>
+<p id="inspectionRuleP1">• Vehicle inspection fee depends on kilometer distance.</p>
+<p id="inspectionRuleP2">• Customer must complete the inspection payment first.</p>
+<p id="inspectionRuleP3">• After payment confirmation, Sakura staff will dispatch for inspection.</p>
+
+<div class="pay-action-wrap">
+<div class="pay-card-note" id="payCardNote">
+✅ Accepted cards: Visa, Mastercard, Debit Card, Apple Pay, and Google Pay.<br>
+Inspection dispatch starts only after payment confirmation.
+</div>
+</div>
+
+<div class="payment-supported-box" id="paymentSupportedBox">
+✅ Supported Payment Methods:<br>
+💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>
+📱 PayPay
+</div>
+</div>
+</div>
+</form>
+</section>
+
+
+<section class="payment-bottom-wrap" id="paymentSection" style="display:none;">
+  <div class="payment-action-title">💳 Pay Now</div>
+  <a class="payment-final-btn" id="dynamicPayBtn" href="#" target="_self" rel="noopener">
+    💳 Pay Now — <span id="payAmountText">¥2,000</span>
+  </a>
+  <div class="payment-final-note" id="paymentFinalNote">
+    ✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>
+    Amount is calculated automatically from Distance (km).
+  </div>
+  <div class="payment-unlock-message" id="paymentUnlockedMsg" style="display:none;">
+    ✅ Request submitted. Pay Now is unlocked.
+  </div>
+</section>
+
+<section class="section dark">
+<h2 data-t="contactTitle"></h2>
+<div class="contact">
+<div class="phone">📞 070-8445-5348</div>
+<p>〒901-2416<br>沖縄県中頭郡中城村和宇慶620−1</p>
+<p data-t="hoursFull"></p>
+<div class="qr-box">
+<h3 id="qrTitle"></h3>
+<img id="qrImage" src="" alt="QR Code">
+<br>
+<a id="qrLink" href="#" target="_blank"></a>
+</div>
+</div>
+</section>
+
+<div class="fixed"><a href="tel:07084455348">📞 Call</a></div>
+<footer>© 2026 Sakura Recovery & Repair Service</footer>
+
+
+<div class="ai-btn" onclick="toggleAI()">💬 AI Customer Support</div>
+<div class="ai-box" id="aiBox">
+<div class="ai-head"><span id="aiHead">Sakura Recovery AI — Customer Support</span><span class="ai-close" onclick="toggleAI()">×</span></div>
+<div class="ai-body" id="aiBody"></div>
+<div class="ai-input-wrap"><input class="ai-input" id="aiInput" placeholder="Message..."><div class="ai-voice" onclick="startVoiceInput()">🎤</div><div class="ai-send" onclick="sendAI()">Send</div></div>
+</div>
+
+<div class="popup-bg" id="successPopup">
+<div class="popup-card">
+<img class="popup-img" src="recovery-hero-truck.webp" alt="Sakura Recovery Help">
+<div class="popup-icon">🌸✅</div>
+<h3 id="popupTitle"></h3>
+<p id="popupMsg"></p>
+<div class="popup-ok" onclick="closePopup()">OK</div>
+</div>
+</div>
+
+<script>
+const LINE_URL="https://line.me/R/ti/p/@sakura_recovery";
+const WHATSAPP_URL="https://wa.me/817084455348";
+const LINE_QR="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(LINE_URL);
+const WHATSAPP_QR="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(WHATSAPP_URL);
+
+const TEXT={
+ja:{heroTitle:"沖縄で自動車トラブルに困ったら、すぐ Sakura Recovery & Repair Service へ",heroText1:"車・バン・トラック・ダンプ・バスの故障、修理、移動、港搬送まで迅速にサポートいたします。",heroText2:"沖縄の車両回収・修理・港搬送サポート。",hoursTitle:"営業時間:",hours:"月曜日〜土曜日 9:00 AM〜6:00 PM",estimateBtn:"見積り依頼",servicesTitle:"対応サービス",s1:"🚛 車両回収",s1p:"故障車・不動車・事故車の回収、移動、現場対応。",s2:"🔧 緊急修理",s2p:"バッテリー、オイル漏れ、ブレーキ、タイヤ問題に対応。",s3:"🚢 港搬送",s3p:"船積み前の修理、港までの搬送をサポート。",s4:"🚌 大型車両",s4p:"トラック、ダンプ、バス、大型車両にも対応。",formTitle:"お見積り依頼フォーム",customerInfo:"1. お客様情報",name:"お名前",phone:"電話番号",fullAddress:"お客様の住所",email:"メール",contactMethod:"希望連絡方法",vehicleInfo:"2. 車両情報",vehicleType:"車両タイプ",vehicleName:"車両名",maker:"メーカー",year:"年式",vin:"車台番号またはナンバー",condition:"車両状態",problemInfo:"3. トラブル内容",vehicleProblem:"車両トラブル内容",detail:"詳しい内容",locationInfo:"4. 現在地・搬送先",vehicleCurrentLocation:"車両の現在地",destination:"希望搬送先・港",payment1:"お支払いはカード決済のみ対応しております。",submitBtn:"見積りを依頼する",contactTitle:"所在地 / Contact",hoursFull:"営業時間: 月曜日〜土曜日 9:00 AM〜6:00 PM",popupTitle:"送信完了しました",popupMsg:"お問い合わせありがとうございます。Sakura Recovery スタッフがお客様の状況を確認し、すぐにご連絡いたします。",qrTitle:"LINEで相談する",qrBtn:"LINEを開く"},
+en:{heroTitle:"Vehicle trouble in Okinawa? Contact Sakura Recovery & Repair Service",heroText1:"Fast support for cars, vans, trucks, dump trucks and buses.",heroText2:"Recovery, repair and port delivery support in Okinawa.",hoursTitle:"Business Hours:",hours:"Monday to Saturday 9:00 AM - 6:00 PM",estimateBtn:"Request Estimate",servicesTitle:"Our Services",s1:"🚛 Vehicle Recovery",s1p:"Recovery and moving support for broken, non-running and accident vehicles.",s2:"🔧 Emergency Repair",s2p:"Battery, oil leak, brake and tire trouble support.",s3:"🚢 Port Delivery",s3p:"Vehicle repair and delivery support before shipping.",s4:"🚌 Heavy Vehicle",s4p:"Support for trucks, dump trucks, buses and heavy vehicles.",formTitle:"Estimate Request Form",customerInfo:"1. Customer Information",name:"Full Name",phone:"Telephone Number",fullAddress:"Customer Full Address",email:"Email",contactMethod:"Preferred Contact",vehicleInfo:"2. Vehicle Details",vehicleType:"Vehicle Type",vehicleName:"Vehicle Name",maker:"Maker",year:"Year",vin:"VIN or Plate Number",condition:"Running Condition",problemInfo:"3. Problem Details",vehicleProblem:"Vehicle Problem",detail:"Detailed Message",locationInfo:"4. Location",vehicleCurrentLocation:"Vehicle Current Location",destination:"Destination Port",payment1:"Payment is accepted by card only.",submitBtn:"Send Request",contactTitle:"Location / Contact",hoursFull:"Business Hours: Monday to Saturday 9:00 AM - 6:00 PM",popupTitle:"Request Sent Successfully",popupMsg:"Thank you for contacting us. Sakura Recovery staff will check your request and contact you soon.",qrTitle:"Chat on WhatsApp",qrBtn:"Open WhatsApp"},
+zh:{heroTitle:"在冲绳遇到车辆故障，请联系 Sakura Recovery & Repair Service",heroText1:"为汽车、面包车、卡车、自卸车和巴士提供快速救援、维修、移动和港口运输支持。",heroText2:"冲绳车辆救援、维修和港口运输服务。",hoursTitle:"营业时间:",hours:"周一至周六 9:00 AM - 6:00 PM",estimateBtn:"申请报价",servicesTitle:"服务内容",s1:"🚛 车辆救援",s1p:"故障车、无法行驶车辆、事故车的回收和移动支持。",s2:"🔧 紧急维修",s2p:"电瓶、漏油、刹车、轮胎问题支持。",s3:"🚢 港口运输",s3p:"装船前维修和车辆送港支持。",s4:"🚌 大型车辆",s4p:"支持卡车、自卸车、巴士等大型车辆。",formTitle:"报价申请表",customerInfo:"1. 客户信息",name:"姓名",phone:"电话号码",fullAddress:"客户完整地址",email:"邮箱",contactMethod:"希望联系方法",vehicleInfo:"2. 车辆信息",vehicleType:"车辆类型",vehicleName:"车辆名称",maker:"制造商",year:"年份",vin:"车架号或车牌号",condition:"车辆状态",problemInfo:"3. 故障内容",vehicleProblem:"车辆问题",detail:"详细内容",locationInfo:"4. 当前位置 / 目的地",vehicleCurrentLocation:"车辆当前位置",destination:"目的港口",payment1:"仅支持信用卡支付。",submitBtn:"提交申请",contactTitle:"地址 / 联系方式",hoursFull:"营业时间: 周一至周六 9:00 AM - 6:00 PM",popupTitle:"提交成功",popupMsg:"感谢您的咨询。Sakura Recovery 工作人员会确认情况并尽快联系您。",qrTitle:"WhatsApp 咨询",qrBtn:"打开 WhatsApp"},
+es:{heroTitle:"¿Problemas con su vehículo en Okinawa? Contacte Sakura Recovery & Repair Service",heroText1:"Soporte rápido para autos, vans, camiones, volquetes y buses: recuperación, reparación, traslado y entrega al puerto.",heroText2:"Recuperación, reparación y entrega al puerto en Okinawa.",hoursTitle:"Horario:",hours:"Lunes a sábado 9:00 AM - 6:00 PM",estimateBtn:"Solicitar cotización",servicesTitle:"Servicios",s1:"🚛 Recuperación de vehículos",s1p:"Soporte para vehículos averiados, inmóviles o accidentados.",s2:"🔧 Reparación de emergencia",s2p:"Soporte para batería, fuga de aceite, frenos y neumáticos.",s3:"🚢 Entrega al puerto",s3p:"Reparación y entrega del vehículo antes del envío.",s4:"🚌 Vehículos grandes",s4p:"Soporte para camiones, volquetes, buses y vehículos pesados.",formTitle:"Formulario de solicitud",customerInfo:"1. Información del cliente",name:"Nombre completo",phone:"Teléfono",fullAddress:"Dirección completa",email:"Correo electrónico",contactMethod:"Método de contacto",vehicleInfo:"2. Información del vehículo",vehicleType:"Tipo de vehículo",vehicleName:"Nombre del vehículo",maker:"Fabricante",year:"Año",vin:"VIN o número de placa",condition:"Estado del vehículo",problemInfo:"3. Detalles del problema",vehicleProblem:"Problema del vehículo",detail:"Mensaje detallado",locationInfo:"4. Ubicación",vehicleCurrentLocation:"Ubicación actual del vehículo",destination:"Puerto de destino",payment1:"Solo se acepta pago con tarjeta.",submitBtn:"Enviar solicitud",contactTitle:"Ubicación / Contacto",hoursFull:"Horario: Lunes a sábado 9:00 AM - 6:00 PM",popupTitle:"Solicitud enviada",popupMsg:"Gracias por contactarnos. Nuestro personal revisará su solicitud y se comunicará pronto.",qrTitle:"Chatear por WhatsApp",qrBtn:"Abrir WhatsApp"},
+ru:{heroTitle:"Проблемы с автомобилем на Окинаве? Обратитесь в Sakura Recovery & Repair Service",heroText1:"Быстрая помощь для легковых авто, фургонов, грузовиков, самосвалов и автобусов: эвакуация, ремонт и доставка в порт.",heroText2:"Эвакуация, ремонт и доставка автомобилей в порт на Окинаве.",hoursTitle:"Часы работы:",hours:"Понедельник–суббота 9:00 AM - 6:00 PM",estimateBtn:"Запросить цену",servicesTitle:"Наши услуги",s1:"🚛 Эвакуация автомобиля",s1p:"Помощь для сломанных, неходовых и аварийных автомобилей.",s2:"🔧 Срочный ремонт",s2p:"Аккумулятор, утечка масла, тормоза и проблемы с шинами.",s3:"🚢 Доставка в порт",s3p:"Ремонт и доставка автомобиля перед отправкой.",s4:"🚌 Большие автомобили",s4p:"Поддержка грузовиков, самосвалов, автобусов и тяжелой техники.",formTitle:"Форма заявки",customerInfo:"1. Информация клиента",name:"Полное имя",phone:"Телефон",fullAddress:"Полный адрес",email:"Email",contactMethod:"Способ связи",vehicleInfo:"2. Данные автомобиля",vehicleType:"Тип автомобиля",vehicleName:"Название автомобиля",maker:"Производитель",year:"Год",vin:"VIN или номер",condition:"Состояние автомобиля",problemInfo:"3. Детали проблемы",vehicleProblem:"Проблема автомобиля",detail:"Подробное сообщение",locationInfo:"4. Местоположение",vehicleCurrentLocation:"Текущее местоположение автомобиля",destination:"Порт назначения",payment1:"Оплата принимается только картой.",submitBtn:"Отправить заявку",contactTitle:"Адрес / Контакт",hoursFull:"Часы работы: Понедельник–суббота 9:00 AM - 6:00 PM",popupTitle:"Заявка отправлена",popupMsg:"Спасибо за обращение. Сотрудник Sakura Recovery скоро свяжется с вами.",qrTitle:"Чат в WhatsApp",qrBtn:"Открыть WhatsApp"},
+vi:{heroTitle:"Xe gặp sự cố ở Okinawa? Liên hệ Sakura Recovery & Repair Service",heroText1:"Hỗ trợ nhanh cho xe hơi, xe van, xe tải, xe ben và xe buýt: cứu hộ, sửa chữa, kéo xe và giao đến cảng.",heroText2:"Dịch vụ cứu hộ, sửa chữa và giao xe đến cảng tại Okinawa.",hoursTitle:"Giờ làm việc:",hours:"Thứ hai đến thứ bảy 9:00 AM - 6:00 PM",estimateBtn:"Yêu cầu báo giá",servicesTitle:"Dịch vụ",s1:"🚛 Cứu hộ xe",s1p:"Hỗ trợ xe hỏng, xe không chạy và xe tai nạn.",s2:"🔧 Sửa chữa khẩn cấp",s2p:"Hỗ trợ ắc quy, rò rỉ dầu, phanh và lốp xe.",s3:"🚢 Giao xe đến cảng",s3p:"Sửa chữa và giao xe đến cảng trước khi vận chuyển.",s4:"🚌 Xe lớn",s4p:"Hỗ trợ xe tải, xe ben, xe buýt và xe hạng nặng.",formTitle:"Mẫu yêu cầu báo giá",customerInfo:"1. Thông tin khách hàng",name:"Họ và tên",phone:"Số điện thoại",fullAddress:"Địa chỉ đầy đủ",email:"Email",contactMethod:"Cách liên hệ",vehicleInfo:"2. Thông tin xe",vehicleType:"Loại xe",vehicleName:"Tên xe",maker:"Hãng xe",year:"Năm",vin:"Số VIN hoặc biển số",condition:"Tình trạng xe",problemInfo:"3. Chi tiết sự cố",vehicleProblem:"Vấn đề của xe",detail:"Nội dung chi tiết",locationInfo:"4. Vị trí",vehicleCurrentLocation:"Vị trí hiện tại của xe",destination:"Cảng đích",payment1:"Chỉ chấp nhận thanh toán bằng thẻ.",submitBtn:"Gửi yêu cầu",contactTitle:"Địa chỉ / Liên hệ",hoursFull:"Giờ làm việc: Thứ hai đến thứ bảy 9:00 AM - 6:00 PM",popupTitle:"Đã gửi thành công",popupMsg:"Cảm ơn bạn. Nhân viên Sakura Recovery sẽ kiểm tra và liên hệ sớm.",qrTitle:"Chat qua WhatsApp",qrBtn:"Mở WhatsApp"},
+ko:{heroTitle:"오키나와에서 차량 문제가 있으면 Sakura Recovery & Repair Service로 연락하세요",heroText1:"승용차, 밴, 트럭, 덤프트럭, 버스의 긴급 회수, 수리, 이동, 항구 배송 지원.",heroText2:"오키나와 차량 회수, 수리 및 항구 배송 지원.",hoursTitle:"영업시간:",hours:"월요일~토요일 9:00 AM - 6:00 PM",estimateBtn:"견적 요청",servicesTitle:"서비스",s1:"🚛 차량 회수",s1p:"고장 차량, 운행 불가 차량, 사고 차량 이동 지원.",s2:"🔧 긴급 수리",s2p:"배터리, 오일 누유, 브레이크, 타이어 문제 지원.",s3:"🚢 항구 배송",s3p:"선적 전 수리 및 항구까지 차량 배송 지원.",s4:"🚌 대형 차량",s4p:"트럭, 덤프트럭, 버스, 대형 차량 지원.",formTitle:"견적 요청 양식",customerInfo:"1. 고객 정보",name:"성명",phone:"전화번호",fullAddress:"고객 전체 주소",email:"이메일",contactMethod:"희망 연락 방법",vehicleInfo:"2. 차량 정보",vehicleType:"차량 종류",vehicleName:"차량명",maker:"제조사",year:"연식",vin:"차대번호 또는 번호판",condition:"차량 상태",problemInfo:"3. 문제 내용",vehicleProblem:"차량 문제",detail:"상세 내용",locationInfo:"4. 위치",vehicleCurrentLocation:"차량 현재 위치",destination:"목적지 항구",payment1:"카드 결제만 가능합니다.",submitBtn:"요청 보내기",contactTitle:"위치 / 연락처",hoursFull:"영업시간: 월요일~토요일 9:00 AM - 6:00 PM",popupTitle:"전송 완료",popupMsg:"감사합니다. Sakura Recovery 직원이 확인 후 곧 연락드립니다.",qrTitle:"WhatsApp 상담",qrBtn:"WhatsApp 열기"},
+ar:{heroTitle:"هل لديك مشكلة في السيارة في أوكيناوا؟ تواصل مع Sakura Recovery & Repair Service",heroText1:"دعم سريع للسيارات والفانات والشاحنات والباصات: سحب، إصلاح، نقل وتسليم إلى الميناء.",heroText2:"خدمة سحب وإصلاح ونقل المركبات إلى الميناء في أوكيناوا.",hoursTitle:"ساعات العمل:",hours:"من الاثنين إلى السبت 9:00 AM - 6:00 PM",estimateBtn:"طلب عرض سعر",servicesTitle:"الخدمات",s1:"🚛 سحب المركبات",s1p:"دعم للمركبات المعطلة وغير المتحركة ومركبات الحوادث.",s2:"🔧 إصلاح طارئ",s2p:"دعم مشاكل البطارية وتسرب الزيت والفرامل والإطارات.",s3:"🚢 النقل إلى الميناء",s3p:"إصلاح وتسليم المركبة إلى الميناء قبل الشحن.",s4:"🚌 مركبات كبيرة",s4p:"دعم للشاحنات والباصات والمركبات الثقيلة.",formTitle:"نموذج طلب عرض السعر",customerInfo:"1. معلومات العميل",name:"الاسم الكامل",phone:"رقم الهاتف",fullAddress:"العنوان الكامل",email:"البريد الإلكتروني",contactMethod:"طريقة التواصل",vehicleInfo:"2. معلومات المركبة",vehicleType:"نوع المركبة",vehicleName:"اسم المركبة",maker:"الشركة المصنعة",year:"السنة",vin:"رقم الهيكل أو اللوحة",condition:"حالة المركبة",problemInfo:"3. تفاصيل المشكلة",vehicleProblem:"مشكلة المركبة",detail:"تفاصيل إضافية",locationInfo:"4. الموقع",vehicleCurrentLocation:"موقع المركبة الحالي",destination:"ميناء الوجهة",payment1:"الدفع بالبطاقة فقط.",submitBtn:"إرسال الطلب",contactTitle:"الموقع / التواصل",hoursFull:"ساعات العمل: من الاثنين إلى السبت 9:00 AM - 6:00 PM",popupTitle:"تم إرسال الطلب بنجاح",popupMsg:"شكراً لتواصلك معنا. سيقوم موظف Sakura Recovery بمراجعة الطلب والتواصل معك قريباً.",qrTitle:"المحادثة عبر WhatsApp",qrBtn:"فتح WhatsApp"},
+ur:{heroTitle:"Okinawa me gaari ka masla ho to Sakura Recovery & Repair Service se rabta karein",heroText1:"Car, van, truck, dump truck aur bus ke liye fast recovery, repair, towing aur port delivery support.",heroText2:"Okinawa me vehicle recovery, repair aur port delivery support.",hoursTitle:"Business Hours:",hours:"Monday se Saturday 9:00 AM - 6:00 PM",estimateBtn:"Estimate Request",servicesTitle:"Services",s1:"🚛 Vehicle Recovery",s1p:"Kharab, accident ya na chalne wali gaari ki recovery aur moving support.",s2:"🔧 Emergency Repair",s2p:"Battery, oil leak, brake aur tire problem support.",s3:"🚢 Port Delivery",s3p:"Shipping se pehle repair aur port tak gaari delivery support.",s4:"🚌 Heavy Vehicle",s4p:"Truck, dump, bus aur heavy vehicle support.",formTitle:"Estimate Request Form",customerInfo:"1. Customer Information",name:"Full Name",phone:"Phone Number",fullAddress:"Customer Full Address",email:"Email",contactMethod:"Contact Method",vehicleInfo:"2. Vehicle Details",vehicleType:"Vehicle Type",vehicleName:"Vehicle Name",maker:"Maker",year:"Year",vin:"VIN ya Plate Number",condition:"Vehicle Condition",problemInfo:"3. Problem Details",vehicleProblem:"Vehicle Problem",detail:"Detail Message",locationInfo:"4. Location",vehicleCurrentLocation:"Vehicle Current Location",destination:"Destination Port",payment1:"Payment sirf card se accepted hai.",submitBtn:"Request Send Karein",contactTitle:"Location / Contact",hoursFull:"Business Hours: Monday se Saturday 9:00 AM - 6:00 PM",popupTitle:"Request Send Ho Gayi",popupMsg:"Shukriya. Sakura Recovery staff aap ki request check karke jaldi contact karega.",qrTitle:"WhatsApp par chat karein",qrBtn:"WhatsApp Open Karein"}
+};
+
+/* Extra site languages added for production */
+TEXT.bn={
+...TEXT.en,
+heroTitle:"ওকিনাওয়ায় গাড়ির সমস্যা হলে Sakura Recovery & Repair Service-এ যোগাযোগ করুন",
+heroText1:"কার, ভ্যান, ট্রাক, ডাম্প ট্রাক ও বাসের জন্য দ্রুত রিকভারি, রিপেয়ার, টোয়িং ও পোর্ট ডেলিভারি সাপোর্ট।",
+heroText2:"ওকিনাওয়ায় গাড়ি রিকভারি, রিপেয়ার ও পোর্ট ডেলিভারি সাপোর্ট।",
+hoursTitle:"ব্যবসার সময়:",
+hours:"সোমবার থেকে শনিবার 9:00 AM - 6:00 PM",
+estimateBtn:"এস্টিমেট রিকোয়েস্ট",
+servicesTitle:"আমাদের সার্ভিস",
+formTitle:"এস্টিমেট রিকোয়েস্ট ফর্ম",
+customerInfo:"1. কাস্টমার তথ্য",
+name:"পূর্ণ নাম",
+phone:"ফোন নম্বর",
+fullAddress:"সম্পূর্ণ ঠিকানা",
+email:"ইমেইল",
+contactMethod:"যোগাযোগের পদ্ধতি",
+vehicleInfo:"2. গাড়ির তথ্য",
+vehicleType:"গাড়ির ধরন",
+vehicleName:"গাড়ির নাম",
+maker:"মেকার",
+year:"বছর",
+vin:"VIN বা প্লেট নম্বর",
+condition:"গাড়ির অবস্থা",
+problemInfo:"3. সমস্যা",
+vehicleProblem:"গাড়ির সমস্যা",
+detail:"বিস্তারিত",
+locationInfo:"4. লোকেশন",
+vehicleCurrentLocation:"গাড়ির বর্তমান লোকেশন",
+destination:"গন্তব্য পোর্ট",
+payment1:"পেমেন্ট শুধুমাত্র কার্ডে গ্রহণ করা হয়।",
+submitBtn:"রিকোয়েস্ট পাঠান",
+popupTitle:"রিকোয়েস্ট পাঠানো হয়েছে",
+popupMsg:"ধন্যবাদ। Sakura Recovery স্টাফ আপনার রিকোয়েস্ট চেক করে দ্রুত যোগাযোগ করবে।",
+qrTitle:"WhatsApp-এ চ্যাট করুন",
+qrBtn:"WhatsApp খুলুন"
+};
+TEXT.fa={
+...TEXT.en,
+heroTitle:"اگر در اوکیناوا با مشکل خودرو روبرو شدید، با Sakura Recovery & Repair Service تماس بگیرید",
+heroText1:"پشتیبانی سریع برای خودرو، ون، کامیون، دامپ و اتوبوس: امداد، تعمیر، یدک‌کشی و حمل به بندر.",
+heroText2:"خدمات امداد، تعمیر و حمل خودرو به بندر در اوکیناوا.",
+hoursTitle:"ساعات کاری:",
+hours:"دوشنبه تا شنبه 9:00 AM - 6:00 PM",
+estimateBtn:"درخواست قیمت",
+servicesTitle:"خدمات ما",
+formTitle:"فرم درخواست قیمت",
+customerInfo:"1. اطلاعات مشتری",
+name:"نام کامل",
+phone:"شماره تلفن",
+fullAddress:"آدرس کامل",
+email:"ایمیل",
+contactMethod:"روش تماس",
+vehicleInfo:"2. اطلاعات خودرو",
+vehicleType:"نوع خودرو",
+vehicleName:"نام خودرو",
+maker:"سازنده",
+year:"سال",
+vin:"VIN یا شماره پلاک",
+condition:"وضعیت خودرو",
+problemInfo:"3. جزئیات مشکل",
+vehicleProblem:"مشکل خودرو",
+detail:"توضیحات",
+locationInfo:"4. موقعیت",
+vehicleCurrentLocation:"موقعیت فعلی خودرو",
+destination:"بندر مقصد",
+payment1:"پرداخت فقط با کارت پذیرفته می‌شود.",
+submitBtn:"ارسال درخواست",
+popupTitle:"درخواست ارسال شد",
+popupMsg:"متشکریم. کارکنان Sakura Recovery درخواست شما را بررسی کرده و به زودی تماس می‌گیرند.",
+qrTitle:"گفتگو در WhatsApp",
+qrBtn:"باز کردن WhatsApp"
+};
+TEXT.tr={
+...TEXT.en,
+heroTitle:"Okinawa’da araç sorunu varsa Sakura Recovery & Repair Service ile iletişime geçin",
+heroText1:"Otomobil, van, kamyon, damperli kamyon ve otobüs için hızlı kurtarma, tamir, çekici ve liman teslim desteği.",
+heroText2:"Okinawa’da araç kurtarma, tamir ve liman teslim desteği.",
+hoursTitle:"Çalışma Saatleri:",
+hours:"Pazartesi-Cumartesi 9:00 AM - 6:00 PM",
+estimateBtn:"Teklif İste",
+servicesTitle:"Hizmetlerimiz",
+formTitle:"Teklif Talep Formu",
+customerInfo:"1. Müşteri Bilgileri",
+name:"Ad Soyad",
+phone:"Telefon Numarası",
+fullAddress:"Tam Adres",
+email:"E-posta",
+contactMethod:"İletişim Yöntemi",
+vehicleInfo:"2. Araç Bilgileri",
+vehicleType:"Araç Türü",
+vehicleName:"Araç Adı",
+maker:"Marka",
+year:"Yıl",
+vin:"VIN veya Plaka",
+condition:"Araç Durumu",
+problemInfo:"3. Sorun Detayları",
+vehicleProblem:"Araç Sorunu",
+detail:"Detaylı Mesaj",
+locationInfo:"4. Konum",
+vehicleCurrentLocation:"Aracın Mevcut Konumu",
+destination:"Hedef Liman",
+payment1:"Ödeme yalnızca kart ile kabul edilir.",
+submitBtn:"Talep Gönder",
+popupTitle:"Talep Gönderildi",
+popupMsg:"Teşekkürler. Sakura Recovery ekibi talebinizi kontrol edip yakında iletişime geçecek.",
+qrTitle:"WhatsApp ile sohbet",
+qrBtn:"WhatsApp Aç"
+};
+TEXT.si={
+...TEXT.en,
+heroTitle:"Okinawa හි වාහන ගැටළුවක් නම් Sakura Recovery & Repair Service අමතන්න",
+heroText1:"කාර්, වෑන්, ට්‍රක්, ඩම්ප් ට්‍රක් සහ බස් සඳහා recovery, repair, towing සහ port delivery support.",
+heroText2:"Okinawa හි vehicle recovery, repair සහ port delivery support.",
+hoursTitle:"ව්‍යාපාර වේලාව:",
+hours:"සඳුදා සිට සෙනසුරාදා 9:00 AM - 6:00 PM",
+estimateBtn:"Estimate Request",
+servicesTitle:"අපගේ සේවා",
+formTitle:"Estimate Request Form",
+customerInfo:"1. Customer Information",
+name:"Full Name",
+phone:"Phone Number",
+fullAddress:"Full Address",
+email:"Email",
+contactMethod:"Contact Method",
+vehicleInfo:"2. Vehicle Details",
+vehicleType:"Vehicle Type",
+vehicleName:"Vehicle Name",
+maker:"Maker",
+year:"Year",
+vin:"VIN or Plate Number",
+condition:"Vehicle Condition",
+problemInfo:"3. Problem Details",
+vehicleProblem:"Vehicle Problem",
+detail:"Detailed Message",
+locationInfo:"4. Location",
+vehicleCurrentLocation:"Vehicle Current Location",
+destination:"Destination Port",
+payment1:"Payment card only.",
+submitBtn:"Send Request",
+popupTitle:"Request Sent",
+popupMsg:"Thank you. Sakura Recovery staff will check and contact you soon.",
+qrTitle:"WhatsApp Chat",
+qrBtn:"Open WhatsApp"
+};
+
+
+
+/* =========================================================
+   MULTILANGUAGE SELECT OPTIONS
+   Values stay English for Google Sheets/n8n, display text changes by language.
+========================================================= */
+const SELECT_TEXT={
+  ja:{
+    contact_method:{Phone:"電話",WhatsApp:"WhatsApp",LINE:"LINE",Email:"メール"},
+    vehicle_type:{Car:"車",Van:"バン",Truck:"トラック",Dump:"ダンプ",Bus:"バス",Other:"その他"},
+    running_condition:{Running:"走行可能", "Not starting":"エンジンがかからない", "Cannot move":"動かない", Damaged:"損傷あり"},
+    vehicle_problem:{"":"トラブルを選択", "Engine not starting":"エンジンがかからない", "Battery dead":"バッテリー上がり", "Tire problem":"タイヤの問題", "Oil leaking":"オイル漏れ", "Brake problem":"ブレーキの問題", "Accident / Damaged":"事故・損傷", "Port delivery":"港搬送", Other:"その他"}
+  },
+  en:{
+    contact_method:{Phone:"Phone",WhatsApp:"WhatsApp",LINE:"LINE",Email:"Email"},
+    vehicle_type:{Car:"Car",Van:"Van",Truck:"Truck",Dump:"Dump",Bus:"Bus",Other:"Other"},
+    running_condition:{Running:"Running", "Not starting":"Not starting", "Cannot move":"Cannot move", Damaged:"Damaged"},
+    vehicle_problem:{"":"Select problem", "Engine not starting":"Engine not starting", "Battery dead":"Battery dead", "Tire problem":"Tire problem", "Oil leaking":"Oil leaking", "Brake problem":"Brake problem", "Accident / Damaged":"Accident / Damaged", "Port delivery":"Port delivery", Other:"Other"}
+  },
+  zh:{
+    contact_method:{Phone:"电话",WhatsApp:"WhatsApp",LINE:"LINE",Email:"邮箱"},
+    vehicle_type:{Car:"汽车",Van:"面包车",Truck:"卡车",Dump:"自卸车",Bus:"巴士",Other:"其他"},
+    running_condition:{Running:"可行驶", "Not starting":"无法启动", "Cannot move":"无法移动", Damaged:"损坏"},
+    vehicle_problem:{"":"选择问题", "Engine not starting":"发动机无法启动", "Battery dead":"电池没电", "Tire problem":"轮胎问题", "Oil leaking":"漏油", "Brake problem":"刹车问题", "Accident / Damaged":"事故/损坏", "Port delivery":"港口运输", Other:"其他"}
+  },
+  es:{
+    contact_method:{Phone:"Teléfono",WhatsApp:"WhatsApp",LINE:"LINE",Email:"Correo"},
+    vehicle_type:{Car:"Auto",Van:"Van",Truck:"Camión",Dump:"Volquete",Bus:"Bus",Other:"Otro"},
+    running_condition:{Running:"Funciona", "Not starting":"No arranca", "Cannot move":"No se mueve", Damaged:"Dañado"},
+    vehicle_problem:{"":"Seleccionar problema", "Engine not starting":"Motor no arranca", "Battery dead":"Batería descargada", "Tire problem":"Problema de neumático", "Oil leaking":"Fuga de aceite", "Brake problem":"Problema de frenos", "Accident / Damaged":"Accidente / Daño", "Port delivery":"Entrega al puerto", Other:"Otro"}
+  },
+  ru:{
+    contact_method:{Phone:"Телефон",WhatsApp:"WhatsApp",LINE:"LINE",Email:"Email"},
+    vehicle_type:{Car:"Авто",Van:"Фургон",Truck:"Грузовик",Dump:"Самосвал",Bus:"Автобус",Other:"Другое"},
+    running_condition:{Running:"На ходу", "Not starting":"Не заводится", "Cannot move":"Не двигается", Damaged:"Повреждено"},
+    vehicle_problem:{"":"Выберите проблему", "Engine not starting":"Двигатель не заводится", "Battery dead":"Сел аккумулятор", "Tire problem":"Проблема с шиной", "Oil leaking":"Утечка масла", "Brake problem":"Проблема с тормозами", "Accident / Damaged":"Авария / повреждение", "Port delivery":"Доставка в порт", Other:"Другое"}
+  },
+  vi:{
+    contact_method:{Phone:"Điện thoại",WhatsApp:"WhatsApp",LINE:"LINE",Email:"Email"},
+    vehicle_type:{Car:"Xe hơi",Van:"Xe van",Truck:"Xe tải",Dump:"Xe ben",Bus:"Xe buýt",Other:"Khác"},
+    running_condition:{Running:"Còn chạy", "Not starting":"Không nổ máy", "Cannot move":"Không di chuyển", Damaged:"Bị hư hỏng"},
+    vehicle_problem:{"":"Chọn sự cố", "Engine not starting":"Động cơ không nổ", "Battery dead":"Hết bình", "Tire problem":"Sự cố lốp", "Oil leaking":"Rò rỉ dầu", "Brake problem":"Sự cố phanh", "Accident / Damaged":"Tai nạn / Hư hỏng", "Port delivery":"Giao đến cảng", Other:"Khác"}
+  },
+  ko:{
+    contact_method:{Phone:"전화",WhatsApp:"WhatsApp",LINE:"LINE",Email:"이메일"},
+    vehicle_type:{Car:"승용차",Van:"밴",Truck:"트럭",Dump:"덤프",Bus:"버스",Other:"기타"},
+    running_condition:{Running:"운행 가능", "Not starting":"시동 안 걸림", "Cannot move":"이동 불가", Damaged:"손상됨"},
+    vehicle_problem:{"":"문제 선택", "Engine not starting":"엔진 시동 안 걸림", "Battery dead":"배터리 방전", "Tire problem":"타이어 문제", "Oil leaking":"오일 누유", "Brake problem":"브레이크 문제", "Accident / Damaged":"사고 / 손상", "Port delivery":"항구 배송", Other:"기타"}
+  },
+  ar:{
+    contact_method:{Phone:"الهاتف",WhatsApp:"واتساب",LINE:"لاين",Email:"البريد الإلكتروني"},
+    vehicle_type:{Car:"سيارة",Van:"فان",Truck:"شاحنة",Dump:"قلاب",Bus:"حافلة",Other:"أخرى"},
+    running_condition:{Running:"تعمل", "Not starting":"لا تعمل", "Cannot move":"لا تتحرك", Damaged:"متضررة"},
+    vehicle_problem:{"":"اختر المشكلة", "Engine not starting":"المحرك لا يعمل", "Battery dead":"البطارية فارغة", "Tire problem":"مشكلة في الإطار", "Oil leaking":"تسرب زيت", "Brake problem":"مشكلة في الفرامل", "Accident / Damaged":"حادث / ضرر", "Port delivery":"توصيل إلى الميناء", Other:"أخرى"}
+  },
+  ur:{
+    contact_method:{Phone:"Phone",WhatsApp:"WhatsApp",LINE:"LINE",Email:"Email"},
+    vehicle_type:{Car:"Car",Van:"Van",Truck:"Truck",Dump:"Dump",Bus:"Bus",Other:"Other"},
+    running_condition:{Running:"Chal rahi hai", "Not starting":"Start nahi ho rahi", "Cannot move":"Move nahi hoti", Damaged:"Damage hai"},
+    vehicle_problem:{"":"Problem select karein", "Engine not starting":"Engine start nahi hota", "Battery dead":"Battery dead", "Tire problem":"Tire problem", "Oil leaking":"Oil leaking", "Brake problem":"Brake problem", "Accident / Damaged":"Accident / Damaged", "Port delivery":"Port delivery", Other:"Other"}
+  },
+  bn:{
+    contact_method:{Phone:"ফোন",WhatsApp:"WhatsApp",LINE:"LINE",Email:"ইমেইল"},
+    vehicle_type:{Car:"কার",Van:"ভ্যান",Truck:"ট্রাক",Dump:"ডাম্প",Bus:"বাস",Other:"অন্যান্য"},
+    running_condition:{Running:"চলছে", "Not starting":"স্টার্ট হচ্ছে না", "Cannot move":"নড়ছে না", Damaged:"ক্ষতিগ্রস্ত"},
+    vehicle_problem:{"":"সমস্যা নির্বাচন করুন", "Engine not starting":"ইঞ্জিন স্টার্ট হচ্ছে না", "Battery dead":"ব্যাটারি ডেড", "Tire problem":"টায়ারের সমস্যা", "Oil leaking":"তেল লিক", "Brake problem":"ব্রেক সমস্যা", "Accident / Damaged":"দুর্ঘটনা / ক্ষতি", "Port delivery":"পোর্ট ডেলিভারি", Other:"অন্যান্য"}
+  },
+  fa:{
+    contact_method:{Phone:"تلفن",WhatsApp:"واتساپ",LINE:"لاین",Email:"ایمیل"},
+    vehicle_type:{Car:"خودرو",Van:"ون",Truck:"کامیون",Dump:"دامپ",Bus:"اتوبوس",Other:"دیگر"},
+    running_condition:{Running:"قابل حرکت", "Not starting":"روشن نمی‌شود", "Cannot move":"حرکت نمی‌کند", Damaged:"آسیب‌دیده"},
+    vehicle_problem:{"":"مشکل را انتخاب کنید", "Engine not starting":"موتور روشن نمی‌شود", "Battery dead":"باتری خالی", "Tire problem":"مشکل تایر", "Oil leaking":"نشت روغن", "Brake problem":"مشکل ترمز", "Accident / Damaged":"تصادف / آسیب", "Port delivery":"تحویل به بندر", Other:"دیگر"}
+  },
+  tr:{
+    contact_method:{Phone:"Telefon",WhatsApp:"WhatsApp",LINE:"LINE",Email:"E-posta"},
+    vehicle_type:{Car:"Araba",Van:"Van",Truck:"Kamyon",Dump:"Damper",Bus:"Otobüs",Other:"Diğer"},
+    running_condition:{Running:"Çalışıyor", "Not starting":"Çalışmıyor", "Cannot move":"Hareket etmiyor", Damaged:"Hasarlı"},
+    vehicle_problem:{"":"Sorun seçin", "Engine not starting":"Motor çalışmıyor", "Battery dead":"Akü bitmiş", "Tire problem":"Lastik sorunu", "Oil leaking":"Yağ kaçağı", "Brake problem":"Fren sorunu", "Accident / Damaged":"Kaza / Hasar", "Port delivery":"Liman teslimi", Other:"Diğer"}
+  },
+  si:{
+    contact_method:{Phone:"Phone",WhatsApp:"WhatsApp",LINE:"LINE",Email:"Email"},
+    vehicle_type:{Car:"Car",Van:"Van",Truck:"Truck",Dump:"Dump",Bus:"Bus",Other:"Other"},
+    running_condition:{Running:"Running", "Not starting":"Not starting", "Cannot move":"Cannot move", Damaged:"Damaged"},
+    vehicle_problem:{"":"Select problem", "Engine not starting":"Engine not starting", "Battery dead":"Battery dead", "Tire problem":"Tire problem", "Oil leaking":"Oil leaking", "Brake problem":"Brake problem", "Accident / Damaged":"Accident / Damaged", "Port delivery":"Port delivery", Other:"Other"}
+  }
+};
+
+function updateSelectOptions(lang){
+  const pack = SELECT_TEXT[lang] || SELECT_TEXT.en;
+  document.querySelectorAll('select[data-select]').forEach(sel=>{
+    const key = sel.getAttribute('data-select');
+    const map = pack[key] || SELECT_TEXT.en[key] || {};
+    const oldValue = sel.value;
+    Array.from(sel.options).forEach(opt=>{
+      const v = opt.value;
+      opt.textContent = (map[v] !== undefined ? map[v] : v);
+    });
+    sel.value = oldValue;
+  });
+}
+
+let currentLang="ja";
+window.currentLang="ja";
+
+
+const PAYMENT_POLICY_TEXT={
+  ja:{title:"💳 Payment Policy",message:`🌸 <b>Sakura Recovery Serviceへようこそ</b><br><br>当サイトをご覧いただき、誠にありがとうございます。<br><br>以下お見積もりフォームは、故障・不動車両の状況確認を行うための「実車確認およびスタッフ派遣」に関するお見積もり受付フォームです。<br><br>※車両移動費用・本土輸送費用・修理費用等は含まれておりません。<br><br>故障内容や車両状態により必要な対応が異なるため、まずはスタッフが現地にて実車確認を行い、搬送可否や必要対応を確認いたします。<br><br>なお、実車確認およびスタッフ派遣は、初回お見積もり費用のお支払い確認完了後に開始となります。<br><br>お客様へ安全かつ適切な対応をご案内するため、ご理解のほどよろしくお願いいたします。`,ruleTitle:"🚗 Sakura Recovery Inspection Rule",rule1:"• 車両確認料金は距離により計算されます。",rule2:"• 実車確認・スタッフ派遣の前に初回お見積もり費用のお支払いが必要です。",rule3:"• お支払い確認後、スタッフが現地確認を開始します。",cardNote:"✅ 利用可能: Visa、Mastercard、Debit Card、Apple Pay、Google Pay。<br>お支払い確認後に実車確認・スタッフ派遣を開始します。",supported:"✅ 対応お支払い方法:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  en:{title:"💳 Payment Policy",message:`🌸 <b>Welcome to Sakura Recovery Service</b><br><br>Thank you very much for visiting our website.<br><br>This estimate request form is for receiving an estimate related to on-site vehicle inspection and staff dispatch to check the condition of a broken-down or non-running vehicle.<br><br>* Vehicle moving fees, mainland transportation fees, repair fees, and other costs are not included.<br><br>Because the required response depends on the vehicle condition and trouble details, our staff will first inspect the vehicle on-site and confirm whether transportation is possible and what support is required.<br><br>On-site vehicle inspection and staff dispatch will begin only after the initial estimate fee payment has been confirmed.<br><br>Thank you for your understanding so we can provide safe and appropriate support.`,ruleTitle:"🚗 Sakura Recovery Inspection Rule",rule1:"• Vehicle inspection fee depends on kilometer distance.",rule2:"• Customer must complete the initial estimate payment first.",rule3:"• After payment confirmation, Sakura staff will dispatch for inspection.",cardNote:"✅ Accepted cards: Visa, Mastercard, Debit Card, Apple Pay, and Google Pay.<br>Inspection dispatch starts only after payment confirmation.",supported:"✅ Supported Payment Methods:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  zh:{title:"💳 支付政策",message:`🌸 <b>欢迎使用 Sakura Recovery Service</b><br><br>非常感谢您浏览本网站。<br><br>以下报价表是用于故障车辆或无法行驶车辆的现场确认及工作人员派遣的报价申请表。<br><br>* 不包含车辆移动费用、日本本土运输费用、维修费用等。<br><br>由于故障内容和车辆状态不同，所需处理也会不同，因此工作人员会先到现场确认车辆实际情况、是否可以搬运以及需要的对应服务。<br><br>现场车辆确认及工作人员派遣将在初次报价费用付款确认后开始。<br><br>为了向客户提供安全且适当的服务，敬请理解。`,ruleTitle:"🚗 Sakura Recovery 检查规则",rule1:"• 车辆检查费用根据公里距离计算。",rule2:"• 客户需要先完成初次报价费用付款。",rule3:"• 付款确认后，工作人员将前往现场检查。",cardNote:"✅ 可使用: Visa、Mastercard、借记卡、Apple Pay、Google Pay。<br>付款确认后开始现场检查。",supported:"✅ 支持的付款方式:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  es:{title:"💳 Política de pago",message:`🌸 <b>Bienvenido a Sakura Recovery Service</b><br><br>Muchas gracias por visitar nuestro sitio web.<br><br>El siguiente formulario de cotización es para solicitar una estimación relacionada con la inspección física del vehículo y el envío de personal para confirmar el estado de un vehículo averiado o que no se mueve.<br><br>* No incluye costos de traslado del vehículo, transporte a Japón continental, reparación u otros costos.<br><br>Como la atención necesaria depende del problema y del estado del vehículo, primero nuestro personal revisará el vehículo en el lugar y confirmará si puede transportarse y qué soporte se necesita.<br><br>La inspección del vehículo y el envío de personal comenzarán después de confirmar el pago inicial de la cotización.<br><br>Gracias por su comprensión para que podamos ofrecer una atención segura y adecuada.`,ruleTitle:"🚗 Regla de inspección Sakura Recovery",rule1:"• La tarifa de inspección depende de la distancia en kilómetros.",rule2:"• El cliente debe completar primero el pago inicial de la cotización.",rule3:"• Después de confirmar el pago, el personal será enviado para la inspección.",cardNote:"✅ Tarjetas aceptadas: Visa, Mastercard, tarjeta de débito, Apple Pay y Google Pay.<br>La inspección comienza solo después de confirmar el pago.",supported:"✅ Métodos de pago disponibles:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  ru:{title:"💳 Политика оплаты",message:`🌸 <b>Добро пожаловать в Sakura Recovery Service</b><br><br>Благодарим вас за посещение нашего сайта.<br><br>Эта форма запроса предназначена для оценки выезда сотрудника и фактического осмотра неисправного или неходового автомобиля.<br><br>* Стоимость перемещения автомобиля, доставки на материковую Японию, ремонта и другие расходы не включены.<br><br>Поскольку необходимые действия зависят от неисправности и состояния автомобиля, сначала сотрудник осмотрит автомобиль на месте и подтвердит возможность перевозки и необходимую помощь.<br><br>Осмотр автомобиля и выезд сотрудника начинаются только после подтверждения оплаты начальной стоимости оценки.<br><br>Спасибо за понимание, это помогает нам предоставить безопасную и правильную поддержку.`,ruleTitle:"🚗 Правила осмотра Sakura Recovery",rule1:"• Стоимость осмотра зависит от расстояния в километрах.",rule2:"• Клиент должен сначала оплатить начальную стоимость оценки.",rule3:"• После подтверждения оплаты сотрудник выезжает на осмотр.",cardNote:"✅ Принимаются: Visa, Mastercard, дебетовая карта, Apple Pay и Google Pay.<br>Выезд на осмотр начинается только после подтверждения оплаты.",supported:"✅ Способы оплаты:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  vi:{title:"💳 Chính sách thanh toán",message:`🌸 <b>Chào mừng đến với Sakura Recovery Service</b><br><br>Cảm ơn bạn đã xem trang web của chúng tôi.<br><br>Mẫu yêu cầu báo giá dưới đây dùng để tiếp nhận báo giá cho việc kiểm tra thực tế xe và cử nhân viên đến hiện trường để xác nhận tình trạng xe hỏng hoặc không chạy được.<br><br>* Không bao gồm phí di chuyển xe, phí vận chuyển về đất liền Nhật Bản, phí sửa chữa và các chi phí khác.<br><br>Vì cách xử lý cần thiết phụ thuộc vào nội dung hư hỏng và tình trạng xe, nhân viên sẽ kiểm tra xe tại hiện trường trước để xác nhận xe có thể vận chuyển hay không và cần hỗ trợ gì.<br><br>Việc kiểm tra xe và cử nhân viên sẽ bắt đầu sau khi xác nhận thanh toán phí báo giá ban đầu.<br><br>Cảm ơn bạn đã thông cảm để chúng tôi có thể hỗ trợ an toàn và phù hợp.`,ruleTitle:"🚗 Quy định kiểm tra Sakura Recovery",rule1:"• Phí kiểm tra xe được tính theo khoảng cách km.",rule2:"• Khách hàng cần thanh toán phí báo giá ban đầu trước.",rule3:"• Sau khi xác nhận thanh toán, nhân viên sẽ được cử đi kiểm tra.",cardNote:"✅ Chấp nhận: Visa, Mastercard, thẻ ghi nợ, Apple Pay và Google Pay.<br>Việc kiểm tra chỉ bắt đầu sau khi xác nhận thanh toán.",supported:"✅ Phương thức thanh toán hỗ trợ:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  ko:{title:"💳 결제 정책",message:`🌸 <b>Sakura Recovery Service에 오신 것을 환영합니다</b><br><br>저희 사이트를 방문해 주셔서 감사합니다.<br><br>아래 견적 요청 양식은 고장 차량 또는 운행 불가 차량의 상태 확인을 위한 실제 차량 확인 및 직원 출동 관련 견적 접수 양식입니다.<br><br>* 차량 이동 비용, 일본 본토 운송 비용, 수리 비용 등은 포함되어 있지 않습니다.<br><br>고장 내용과 차량 상태에 따라 필요한 대응이 다르므로, 먼저 직원이 현장에서 차량을 확인하고 운송 가능 여부와 필요한 대응을 확인합니다.<br><br>실제 차량 확인 및 직원 출동은 최초 견적 비용 결제 확인 완료 후 시작됩니다.<br><br>고객님께 안전하고 적절한 지원을 안내하기 위한 절차이니 양해 부탁드립니다.`,ruleTitle:"🚗 Sakura Recovery 검사 규칙",rule1:"• 차량 검사 비용은 거리(km)에 따라 계산됩니다.",rule2:"• 고객은 먼저 최초 견적 비용을 결제해야 합니다.",rule3:"• 결제 확인 후 직원이 현장 검사에 출동합니다.",cardNote:"✅ 사용 가능: Visa, Mastercard, 체크카드, Apple Pay, Google Pay.<br>결제 확인 후 현장 검사가 시작됩니다.",supported:"✅ 지원 결제 방법:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  ar:{title:"💳 سياسة الدفع",message:`🌸 <b>مرحباً بكم في Sakura Recovery Service</b><br><br>نشكركم على زيارة موقعنا.<br><br>نموذج طلب التقدير أدناه مخصص لاستقبال طلبات تقدير تكلفة الفحص الفعلي للمركبة وإرسال الموظف للتحقق من حالة المركبة المعطلة أو غير القابلة للحركة.<br><br>* لا يشمل رسوم نقل المركبة، أو النقل إلى البر الرئيسي في اليابان، أو رسوم الإصلاح، أو أي تكاليف أخرى.<br><br>لأن الإجراء المطلوب يختلف حسب حالة المركبة ونوع العطل، سيقوم الموظف أولاً بفحص المركبة في الموقع والتأكد من إمكانية نقلها وما يلزم من دعم.<br><br>يبدأ الفحص الفعلي وإرسال الموظف بعد تأكيد دفع رسوم التقدير الأولية.<br><br>نشكركم على تفهمكم حتى نتمكن من تقديم خدمة آمنة ومناسبة.`,ruleTitle:"🚗 قاعدة فحص Sakura Recovery",rule1:"• يتم حساب رسوم فحص المركبة حسب المسافة بالكيلومتر.",rule2:"• يجب على العميل دفع رسوم التقدير الأولية أولاً.",rule3:"• بعد تأكيد الدفع، يتم إرسال الموظف للفحص.",cardNote:"✅ البطاقات المقبولة: Visa و Mastercard وبطاقة الخصم و Apple Pay و Google Pay.<br>يبدأ إرسال الموظف بعد تأكيد الدفع فقط.",supported:"✅ طرق الدفع المدعومة:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  ur:{title:"💳 Payment Policy",message:`🌸 <b>Sakura Recovery Service me khush aamdeed</b><br><br>Hamari website dekhne ka bohot shukriya.<br><br>Ye estimate form kharab ya na chalne wali gaari ki haalat check karne ke liye “actual vehicle inspection aur staff dispatch” ke estimate request ke liye hai.<br><br>* Is me gaari move karne ki fee, mainland transport fee, repair fee waghera shamil nahi hain.<br><br>Gaari ke maslay aur condition ke mutabiq zaroori support alag ho sakta hai, isliye staff pehle location par ja kar gaari check karega, transport possible hai ya nahi aur kya support chahiye confirm karega.<br><br>Actual vehicle inspection aur staff dispatch initial estimate fee ki payment confirm hone ke baad start hoga.<br><br>Customer ko safe aur proper support dene ke liye aap ki understanding ka shukriya.`,ruleTitle:"🚗 Sakura Recovery Inspection Rule",rule1:"• Vehicle inspection fee distance km ke hisaab se calculate hoti hai.",rule2:"• Customer ko pehle initial estimate payment complete karni hogi.",rule3:"• Payment confirm hone ke baad Sakura staff inspection ke liye dispatch hoga.",cardNote:"✅ Accepted cards: Visa, Mastercard, Debit Card, Apple Pay, aur Google Pay.<br>Inspection dispatch sirf payment confirmation ke baad start hota hai.",supported:"✅ Supported Payment Methods:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  bn:{title:"💳 পেমেন্ট পলিসি",message:`🌸 <b>Sakura Recovery Service-এ স্বাগতম</b><br><br>আমাদের ওয়েবসাইট দেখার জন্য ধন্যবাদ।<br><br>নিচের এস্টিমেট ফর্মটি নষ্ট বা না-চলা গাড়ির অবস্থা確認ের জন্য বাস্তব গাড়ি পরীক্ষা এবং স্টাফ পাঠানোর এস্টিমেট রিকোয়েস্ট ফর্ম।<br><br>* গাড়ি সরানোর খরচ, মেইনল্যান্ড ট্রান্সপোর্ট খরচ, রিপেয়ার খরচ ইত্যাদি এতে অন্তর্ভুক্ত নয়।<br><br>গাড়ির সমস্যা ও অবস্থার উপর প্রয়োজনীয় সাপোর্ট ভিন্ন হতে পারে, তাই প্রথমে স্টাফ现场ে গিয়ে গাড়ি পরীক্ষা করবে এবং পরিবহন সম্ভব কি না ও কী সাপোর্ট দরকার তা নিশ্চিত করবে।<br><br>বাস্তব গাড়ি পরীক্ষা এবং স্টাফ পাঠানো শুরু হবে প্রাথমিক এস্টিমেট ফি পেমেন্ট নিশ্চিত হওয়ার পর।<br><br>নিরাপদ ও যথাযথ সাপোর্ট দেওয়ার জন্য আপনার বোঝাপড়ার জন্য ধন্যবাদ।`,ruleTitle:"🚗 Sakura Recovery Inspection Rule",rule1:"• গাড়ির inspection fee দূরত্ব অনুযায়ী হিসাব হয়।",rule2:"• আগে initial estimate payment সম্পন্ন করতে হবে।",rule3:"• payment confirmation-এর পরে staff inspection-এর জন্য dispatch হবে।",cardNote:"✅ Accepted cards: Visa, Mastercard, Debit Card, Apple Pay, Google Pay.<br>Payment confirmation-এর পরে inspection dispatch শুরু হবে।",supported:"✅ Supported Payment Methods:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  fa:{title:"💳 سیاست پرداخت",message:`🌸 <b>به Sakura Recovery Service خوش آمدید</b><br><br>از بازدید شما از وب‌سایت ما سپاسگزاریم.<br><br>فرم برآورد زیر برای دریافت درخواست مربوط به بررسی واقعی خودرو و اعزام کارکنان جهت بررسی وضعیت خودروی خراب یا غیرقابل حرکت است.<br><br>* هزینه جابجایی خودرو، حمل به سرزمین اصلی ژاپن، هزینه تعمیر و سایر هزینه‌ها شامل نمی‌شود.<br><br>از آنجا که اقدام لازم با توجه به خرابی و وضعیت خودرو متفاوت است، ابتدا کارکنان در محل خودرو را بررسی می‌کنند و امکان حمل و اقدامات لازم را تأیید می‌کنند.<br><br>بررسی واقعی خودرو و اعزام کارکنان پس از تأیید پرداخت هزینه اولیه برآورد آغاز می‌شود.<br><br>برای ارائه خدمات ایمن و مناسب، از درک شما سپاسگزاریم.`,ruleTitle:"🚗 قانون بررسی Sakura Recovery",rule1:"• هزینه بررسی خودرو بر اساس فاصله کیلومتری محاسبه می‌شود.",rule2:"• مشتری باید ابتدا هزینه اولیه برآورد را پرداخت کند.",rule3:"• پس از تأیید پرداخت، کارکنان برای بررسی اعزام می‌شوند.",cardNote:"✅ کارت‌های قابل قبول: Visa، Mastercard، Debit Card، Apple Pay و Google Pay.<br>اعزام برای بررسی فقط پس از تأیید پرداخت شروع می‌شود.",supported:"✅ روش‌های پرداخت پشتیبانی‌شده:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  tr:{title:"💳 Ödeme Politikası",message:`🌸 <b>Sakura Recovery Service’e hoş geldiniz</b><br><br>Web sitemizi ziyaret ettiğiniz için teşekkür ederiz.<br><br>Aşağıdaki teklif formu, arızalı veya hareket etmeyen aracın durumunu kontrol etmek için gerçek araç kontrolü ve personel gönderimiyle ilgili teklif talebi içindir.<br><br>* Araç taşıma ücreti, Japonya ana karasına nakliye ücreti, tamir ücreti ve diğer masraflar dahil değildir.<br><br>Gerekli işlem arıza içeriğine ve araç durumuna göre değiştiğinden, personel önce aracı yerinde kontrol eder, taşımanın mümkün olup olmadığını ve gereken desteği doğrular.<br><br>Gerçek araç kontrolü ve personel gönderimi, ilk teklif ücreti ödemesi onaylandıktan sonra başlar.<br><br>Güvenli ve uygun destek sunabilmemiz için anlayışınız için teşekkür ederiz.`,ruleTitle:"🚗 Sakura Recovery Kontrol Kuralı",rule1:"• Araç kontrol ücreti kilometre mesafesine göre hesaplanır.",rule2:"• Müşteri önce ilk teklif ödemesini tamamlamalıdır.",rule3:"• Ödeme onayından sonra personel kontrol için gönderilir.",cardNote:"✅ Kabul edilen kartlar: Visa, Mastercard, Debit Card, Apple Pay ve Google Pay.<br>Kontrol gönderimi sadece ödeme onayından sonra başlar.",supported:"✅ Desteklenen ödeme yöntemleri:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"},
+  si:{title:"💳 Payment Policy",message:`🌸 <b>Sakura Recovery Service වෙත සාදරයෙන් පිළිගනිමු</b><br><br>අපගේ වෙබ් අඩවිය බැලූ ඔබට ස්තූතියි.<br><br>පහත estimate form එක, කැඩුණු හෝ නොචලන වාහනයේ තත්ත්වය පරීක්ෂා කිරීම සඳහා actual vehicle inspection සහ staff dispatch සම්බන්ධ estimate request එකකි.<br><br>* වාහනය ගෙනයාමේ ගාස්තු, mainland transport ගාස්තු, repair ගාස්තු සහ වෙනත් වියදම් මෙයට ඇතුළත් නොවේ.<br><br>වාහනයේ තත්ත්වය සහ ගැටළුව අනුව අවශ්‍ය support වෙනස් විය හැකි බැවින්, staff මුලින් location එකට පැමිණ වාහනය පරීක්ෂා කර transport කළ හැකිද සහ අවශ්‍ය support මොනවාද තහවුරු කරයි.<br><br>Actual vehicle inspection සහ staff dispatch ආරම්භ වන්නේ initial estimate fee payment confirmation පසුය.<br><br>ඔබට ආරක්ෂිත සහ නිවැරදි support ලබාදීමට ඔබගේ අවබෝධයට ස්තූතියි.`,ruleTitle:"🚗 Sakura Recovery Inspection Rule",rule1:"• Vehicle inspection fee එක km distance අනුව calculate වේ.",rule2:"• Customer මුලින් initial estimate payment complete කළ යුතුය.",rule3:"• Payment confirmation පසු staff inspection සඳහා dispatch වේ.",cardNote:"✅ Accepted cards: Visa, Mastercard, Debit Card, Apple Pay, Google Pay.<br>Inspection dispatch payment confirmation පසු පමණක් ආරම්භ වේ.",supported:"✅ Supported Payment Methods:<br>💳 VISA / MASTER CARD / DEBIT CARD / Apple Pay / Google Pay<br>📱 PayPay"}
+};
+
+function updatePaymentPolicyLang(lang){
+  const t=PAYMENT_POLICY_TEXT[lang] || PAYMENT_POLICY_TEXT.en;
+  const set=(id,html)=>{const el=document.getElementById(id); if(el) el.innerHTML=html;};
+  set("paymentPolicyTitle", t.title);
+  set("paymentPolicyMessage", t.message);
+  set("inspectionRuleTitle", t.ruleTitle);
+  set("inspectionRuleP1", t.rule1);
+  set("inspectionRuleP2", t.rule2);
+  set("inspectionRuleP3", t.rule3);
+  set("payCardNote", t.cardNote);
+  set("paymentSupportedBox", t.supported);
+}
+
+function changeLang(lang){
+currentLang=lang;
+window.currentLang=lang;
+document.documentElement.lang=lang;
+document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+document.querySelectorAll("[data-t]").forEach(el=>{
+const k=el.getAttribute("data-t");
+if(TEXT[lang] && TEXT[lang][k]) el.innerHTML=TEXT[lang][k];
+});
+updateQR();
+if(window.updateSelectOptions) window.updateSelectOptions(lang);
+else if(typeof updateSelectOptions === "function") updateSelectOptions(lang);
+if(window.updateInspectionFeeLang) window.updateInspectionFeeLang();
+updatePaymentPolicyLang(lang);
+}
+
+window.updateSelectOptions = updateSelectOptions;
+
+function updateQR(){
+const isJP=currentLang==="ja";
+document.getElementById("qrTitle").innerHTML=isJP?TEXT.ja.qrTitle:TEXT[currentLang].qrTitle;
+document.getElementById("qrImage").src=isJP?LINE_QR:WHATSAPP_QR;
+document.getElementById("qrLink").href=isJP?LINE_URL:WHATSAPP_URL;
+document.getElementById("qrLink").innerHTML=isJP?TEXT.ja.qrBtn:TEXT[currentLang].qrBtn;
+}
+
+function markErrors(){
+let first=null;
+document.querySelectorAll("#requestForm [required]").forEach(el=>{
+const bad=!el.value.trim();
+el.classList.toggle("field-error",bad);
+let note=el.nextElementSibling;
+if(!(note&&note.classList&&note.classList.contains("error-note"))){
+  note=el.parentElement ? el.parentElement.querySelector(".error-note") : null;
+}
+if(note&&note.classList.contains("error-note"))note.style.display=bad?"block":"none";
+if(bad&&!first)first=el;
+});
+if(first){first.scrollIntoView({behavior:"smooth",block:"center"});first.focus();}
+return !first;
+}
+
+document.querySelectorAll("#requestForm [required]").forEach(el=>{
+function clearFieldError(){
+  el.classList.remove("field-error");
+  let n=el.nextElementSibling;
+  if(!(n&&n.classList&&n.classList.contains("error-note"))){
+    n=el.parentElement ? el.parentElement.querySelector(".error-note") : null;
+  }
+  if(n&&n.classList.contains("error-note"))n.style.display="none";
+}
+el.addEventListener("input",clearFieldError);
+el.addEventListener("change",clearFieldError);
+});
+
+
+function unlockPaymentAfterSubmit(){
+  const sec=document.getElementById("paymentSection");
+  const msg=document.getElementById("paymentUnlockedMsg");
+  if(sec){
+    sec.style.display="block";
+    sec.scrollIntoView({behavior:"smooth",block:"center"});
+  }
+  if(msg) msg.style.display="block";
+}
+function lockPaymentOnLoad(){
+  const sec=document.getElementById("paymentSection");
+  const msg=document.getElementById("paymentUnlockedMsg");
+  if(sec) sec.style.display="none";
+  if(msg) msg.style.display="none";
+}
+document.addEventListener("DOMContentLoaded",lockPaymentOnLoad);
+
+
+function showPopup(){
+document.getElementById("popupTitle").innerHTML=TEXT[currentLang].popupTitle;
+document.getElementById("popupMsg").innerHTML=TEXT[currentLang].popupMsg;
+document.getElementById("successPopup").style.display="flex";
+}
+function closePopup(){document.getElementById("successPopup").style.display="none";}
+
+document.getElementById("requestForm").addEventListener("submit",async function(e){
+e.preventDefault();
+if(!markErrors())return;
+const form=e.target;
+const data=Object.fromEntries(new FormData(form).entries());
+data.created_at=new Date().toISOString();
+data.language=currentLang;
+data.payment_method=Array.from(document.querySelectorAll('input[name="payment_method"]:checked')).map(x=>x.value).join(", ");
+data.inspection_distance_km=document.getElementById("distanceKm") ? document.getElementById("distanceKm").value : "";
+data.inspection_fee_yen=String(getCurrentFeeYen ? getCurrentFeeYen() : 2000);
+submittedCustomerData={...data};
+
+try{
+const submitBtn=form.querySelector('button[type="submit"]');
+if(submitBtn){
+  submitBtn.disabled=true;
+  submitBtn.dataset.oldText=submitBtn.innerHTML;
+  submitBtn.innerHTML="⏳ Sending...";
+}
+const controller=new AbortController();
+const timer=setTimeout(()=>controller.abort(),15000);
+const res=await fetch("https://n8n.sakurajapanbot.tech/webhook/sakura-recovery-estimate",{
+  method:"POST",
+  headers:{"Content-Type":"application/json"},
+  body:JSON.stringify(data),
+  signal:controller.signal
+});
+clearTimeout(timer);
+if(!res.ok){
+  throw new Error("Webhook response error: "+res.status);
+}
+const submittedFeeYen = data.inspection_fee_yen;
+const submittedDistanceKm = data.inspection_distance_km;
+form.reset();
+const feeHiddenAfter=document.getElementById("inspectionFeeYen");
+if(feeHiddenAfter) feeHiddenAfter.value=submittedFeeYen;
+currentInspectionFeeYen=Number(submittedFeeYen||2000);
+submittedCustomerData.inspection_fee_yen=submittedFeeYen;
+submittedCustomerData.inspection_distance_km=submittedDistanceKm;
+showPopup();
+updateDynamicPaymentButton();
+unlockPaymentAfterSubmit();
+if(submitBtn){
+  submitBtn.disabled=false;
+  submitBtn.innerHTML=submitBtn.dataset.oldText || submitBtn.innerHTML;
+}
+}catch(error){
+const submitBtn=form.querySelector('button[type="submit"]');
+if(submitBtn){
+  submitBtn.disabled=false;
+  submitBtn.innerHTML=submitBtn.dataset.oldText || submitBtn.innerHTML;
+}
+document.getElementById("popupTitle").innerHTML="送信エラー";
+document.getElementById("popupMsg").innerHTML="送信できませんでした。電話でお問い合わせください。";
+document.getElementById("successPopup").style.display="flex";
+}
+});
+
+
+/* Sakura Recovery AI Bot: multi-language, distance estimate, card payment guidance, voice input */
+const CARD_PAYMENT_URL="#requestForm"; // Dynamic payment unlocks after customer submits form with distance
+const COMPANY_ADDRESS="〒901-2416 沖縄県中頭郡中城村和宇慶620-1 Sakura Recovery Repair Service";
+const BASE_KM=3;
+const BASE_PRICE=2000;
+let lastEstimate=null;
+
+const AI_TEXT={
+ja:{head:"Sakura Recovery AI — お客様サポート",welcome:"Sakura Recovery Serviceへようこそ。お客様のお力になれることを心より嬉しく思います。ご依頼内容の確認後、初回お支払いの確認が完了してから車両点検を開始いたします。3kmまで車両確認料金は2,000円です。",select:"ご希望の内容を選んでください。",check:"車両確認ですね。車両の現在地をフォームの『車両の現在地』に入力してください。距離を確認して料金をご案内します。",distanceAsk:"Google Mapsで距離を確認後、例: 4.5km と入力してください。",priceIntro:"車両確認料金は3kmごとに2,000円です。",agree:"内容に同意いただける場合は、先にデビットカードまたはクレジットカードでお支払いください。お支払い確認後、車両確認を開始します。",notmove:"車が動かない場合は現在地・車両名・症状をフォームへ入力してください。",repair:"修理相談は車両名・年式・症状を教えてください。",port:"港搬送は現在地と搬送先の港名を入力してください。",formGo:"見積りフォームへ進む",map:"Google Mapsで距離確認",pay:"カードで支払う",voice:"音声入力できます。"},
+en:{head:"Sakura Recovery AI — Customer Support",welcome:"Welcome to Sakura Recovery Service. It will be our pleasure to assist you today. After your request is confirmed, the first payment must be received and confirmed before vehicle inspection starts. Vehicle inspection charge is ¥2,000 up to 3 km.",select:"Please choose what you need.",check:"Vehicle inspection request noted. Please enter the vehicle current location in the form. I will guide the distance rate.",distanceAsk:"After checking Google Maps distance, type like: 4.5km.",priceIntro:"Vehicle inspection fee is ¥2,000 per 3 km.",agree:"If you agree, first payment is required by debit card or credit card. After payment confirmation, vehicle inspection starts.",notmove:"If the vehicle cannot move, enter location, vehicle name and problem details in the form.",repair:"For repair, tell us vehicle name, year and symptoms.",port:"For port delivery, enter current location and destination port.",formGo:"Go to Estimate Form",map:"Check distance on Google Maps",pay:"Pay by Card",voice:"Voice message/input is available."},
+ur:{head:"Sakura Recovery AI — Customer Support",welcome:"Sakura Recovery AI me khush amdeed. Sakura Recovery ko khushi hogi ke aap ki madad kare. Deal confirm hone ke baad first payment receive aur confirm hoga, phir vehicle inspection start ki jayegi. 3km tak vehicle check charge ¥2,000 hai.",select:"Kiya service chahiye?",check:"Vehicle check request ok. Form me Vehicle Current Location fill karein. Phir distance rate bata dunga.",distanceAsk:"Google Maps me distance check kar ke is tarah type karein: 4.5km.",priceIntro:"Vehicle check fee har 3km par ¥2,000 hai.",agree:"Agar aap agree hain to pehle debit card ya credit card se payment zaroori hai. Payment confirm hone ke baad vehicle check start hoga.",notmove:"Agar vehicle move nahi ho rahi, location, vehicle name aur problem form me fill karein.",repair:"Repair ke liye vehicle name, year aur symptoms batayein.",port:"Port delivery ke liye current location aur destination port name likhein.",formGo:"Estimate Form par jayein",map:"Google Maps par distance check",pay:"Card se Payment",voice:"Voice message/input available hai."},
+zh:{head:"Sakura Recovery AI — 客户支持",welcome:"欢迎咨询车辆检查、维修、救援和港口运输。3公里内车辆检查费为2,000日元。",select:"请选择需要的服务。",check:"车辆检查申请已收到。请在表格中填写车辆当前位置，我会说明距离费用。",distanceAsk:"请在 Google Maps 确认距离后输入，例如: 4.5km。",priceIntro:"车辆检查费用为每3公里2,000日元。",agree:"如果同意，请先使用借记卡或信用卡付款。确认付款后开始车辆检查。",notmove:"如果车辆无法移动，请填写位置、车辆名称和问题。",repair:"维修请填写车辆名称、年份和症状。",port:"港口运输请填写当前位置和目的港。",formGo:"前往报价表",map:"用 Google Maps 查看距离",pay:"银行卡支付",voice:"可使用语音输入。"},
+es:{head:"Sakura Recovery AI — Atención al cliente",welcome:"Puedo ayudar con inspección, reparación, recuperación y entrega al puerto. La inspección cuesta ¥2,000 hasta 3 km.",select:"Elija el servicio.",check:"Solicitud de inspección recibida. Ingrese la ubicación actual del vehículo en el formulario.",distanceAsk:"Después de verificar en Google Maps, escriba por ejemplo: 4.5km.",priceIntro:"La tarifa de inspección es ¥2,000 por cada 3 km.",agree:"Si acepta, primero pague con tarjeta de débito o crédito. Después del pago comenzará la inspección.",notmove:"Si el vehículo no se mueve, ingrese ubicación, vehículo y problema.",repair:"Para reparación, indique vehículo, año y síntomas.",port:"Para puerto, ingrese ubicación actual y puerto de destino.",formGo:"Ir al formulario",map:"Ver distancia en Google Maps",pay:"Pagar con tarjeta",voice:"Entrada por voz disponible."},
+ru:{head:"Sakura Recovery AI — Поддержка",welcome:"Я помогу с осмотром, ремонтом, эвакуацией и доставкой в порт. Осмотр до 3 км стоит ¥2,000.",select:"Выберите услугу.",check:"Заявка на осмотр принята. Укажите местоположение автомобиля в форме.",distanceAsk:"Проверьте расстояние в Google Maps и введите, например: 4.5km.",priceIntro:"Осмотр: ¥2,000 за каждые 3 км.",agree:"Если согласны, сначала оплатите дебетовой или кредитной картой. После оплаты начнется осмотр.",notmove:"Если авто не движется, укажите место, модель и проблему.",repair:"Для ремонта укажите модель, год и симптомы.",port:"Для порта укажите текущее место и порт назначения.",formGo:"Перейти к форме",map:"Проверить в Google Maps",pay:"Оплатить картой",voice:"Доступен голосовой ввод."},
+vi:{head:"Sakura Recovery AI — Hỗ trợ",welcome:"Tôi hỗ trợ kiểm tra xe, sửa chữa, cứu hộ và giao cảng. Phí kiểm tra xe trong 3km là ¥2,000.",select:"Vui lòng chọn dịch vụ.",check:"Yêu cầu kiểm tra xe đã nhận. Hãy nhập vị trí hiện tại của xe trong form.",distanceAsk:"Sau khi kiểm tra Google Maps, nhập ví dụ: 4.5km.",priceIntro:"Phí kiểm tra xe là ¥2,000 mỗi 3km.",agree:"Nếu đồng ý, cần thanh toán trước bằng thẻ debit hoặc credit. Sau khi xác nhận thanh toán sẽ bắt đầu kiểm tra xe.",notmove:"Nếu xe không di chuyển, nhập vị trí, tên xe và sự cố.",repair:"Sửa chữa: cho biết tên xe, năm và triệu chứng.",port:"Giao cảng: nhập vị trí hiện tại và cảng đến.",formGo:"Đến form báo giá",map:"Kiểm tra trên Google Maps",pay:"Thanh toán bằng thẻ",voice:"Có thể nhập bằng giọng nói."},
+ko:{head:"Sakura Recovery AI — 고객 지원",welcome:"차량 확인, 수리, 구조, 항구 운송을 도와드립니다. 3km까지 차량 확인 요금은 ¥2,000입니다.",select:"원하는 서비스를 선택하세요.",check:"차량 확인 요청입니다. 양식에 차량 현재 위치를 입력하세요.",distanceAsk:"Google Maps에서 거리를 확인한 후 예: 4.5km 라고 입력하세요.",priceIntro:"차량 확인 요금은 3km마다 ¥2,000입니다.",agree:"동의하시면 먼저 체크/신용카드로 결제해 주세요. 결제 확인 후 차량 확인을 시작합니다.",notmove:"차량이 움직이지 않으면 위치, 차량명, 문제를 입력하세요.",repair:"수리는 차량명, 연식, 증상을 알려주세요.",port:"항구 운송은 현재 위치와 목적 항구를 입력하세요.",formGo:"견적 양식으로 이동",map:"Google Maps 거리 확인",pay:"카드 결제",voice:"음성 입력 가능."},
+ar:{head:"Sakura Recovery AI — دعم العملاء",welcome:"أساعدك في فحص المركبة والإصلاح والسحب والنقل إلى الميناء. رسوم الفحص حتى 3 كم هي ¥2,000.",select:"اختر الخدمة المطلوبة.",check:"تم تسجيل طلب فحص المركبة. أدخل موقع المركبة الحالي في النموذج.",distanceAsk:"بعد التحقق من Google Maps اكتب مثل: 4.5km.",priceIntro:"رسوم فحص المركبة ¥2,000 لكل 3 كم.",agree:"إذا وافقت، يلزم الدفع أولاً ببطاقة debit أو credit. بعد تأكيد الدفع يبدأ فحص المركبة.",notmove:"إذا كانت المركبة لا تتحرك، أدخل الموقع واسم المركبة والمشكلة.",repair:"للإصلاح، اكتب اسم المركبة والسنة والأعراض.",port:"للنقل إلى الميناء، أدخل الموقع الحالي والميناء المطلوب.",formGo:"الانتقال إلى النموذج",map:"تحقق من المسافة عبر Google Maps",pay:"الدفع بالبطاقة",voice:"الإدخال الصوتي متاح."}
+};
+
+/* Extra AI voice/chat languages */
+AI_TEXT.bn={
+head:"Sakura Recovery AI — কাস্টমার সাপোর্ট",
+welcome:"Sakura Recovery AI-তে স্বাগতম। Vehicle check, repair, recovery এবং port delivery বিষয়ে সাহায্য পাবেন। 3km পর্যন্ত vehicle check charge ¥2,000।",
+select:"আপনার প্রয়োজনীয় সার্ভিস নির্বাচন করুন।",
+check:"Vehicle check request নেওয়া হয়েছে। ফর্মে Vehicle Current Location লিখুন।",
+distanceAsk:"Google Maps-এ distance check করে এইভাবে লিখুন: 4.5km.",
+priceIntro:"Vehicle check fee প্রতি 3km-এ ¥2,000।",
+agree:"আপনি agree করলে আগে debit card বা credit card দিয়ে payment করতে হবে। Payment confirm হলে vehicle check শুরু হবে।",
+notmove:"Vehicle move না করলে location, vehicle name এবং problem form-এ লিখুন।",
+repair:"Repair এর জন্য vehicle name, year এবং symptoms লিখুন।",
+port:"Port delivery এর জন্য current location এবং destination port লিখুন।",
+formGo:"Estimate Form-এ যান",
+map:"Google Maps-এ distance check করুন",
+pay:"Card দিয়ে payment",
+voice:"Voice input available."
+};
+AI_TEXT.fa={
+head:"Sakura Recovery AI — پشتیبانی مشتری",
+welcome:"به Sakura Recovery AI خوش آمدید. برای بررسی خودرو، تعمیر، امداد و حمل به بندر کمک می‌کنم. هزینه بررسی تا 3 کیلومتر ¥2,000 است.",
+select:"لطفاً سرویس مورد نظر را انتخاب کنید.",
+check:"درخواست بررسی خودرو ثبت شد. موقعیت فعلی خودرو را در فرم وارد کنید.",
+distanceAsk:"پس از بررسی فاصله در Google Maps، مثل 4.5km وارد کنید.",
+priceIntro:"هزینه بررسی خودرو ¥2,000 برای هر 3 کیلومتر است.",
+agree:"در صورت موافقت، ابتدا پرداخت با کارت debit یا credit لازم است. پس از تأیید پرداخت، بررسی خودرو شروع می‌شود.",
+notmove:"اگر خودرو حرکت نمی‌کند، موقعیت، نام خودرو و مشکل را وارد کنید.",
+repair:"برای تعمیر، نام خودرو، سال و علائم را وارد کنید.",
+port:"برای حمل به بندر، موقعیت فعلی و بندر مقصد را وارد کنید.",
+formGo:"رفتن به فرم",
+map:"بررسی فاصله در Google Maps",
+pay:"پرداخت با کارت",
+voice:"ورودی صوتی در دسترس است."
+};
+AI_TEXT.tr={
+head:"Sakura Recovery AI — Müşteri Desteği",
+welcome:"Sakura Recovery AI’ye hoş geldiniz. Araç kontrolü, tamir, kurtarma ve liman teslimi için yardımcı olurum. 3km’ye kadar araç kontrol ücreti ¥2,000.",
+select:"Lütfen istediğiniz hizmeti seçin.",
+check:"Araç kontrol talebi alındı. Formda aracın mevcut konumunu girin.",
+distanceAsk:"Google Maps mesafesini kontrol edip örnek olarak 4.5km yazın.",
+priceIntro:"Araç kontrol ücreti her 3km için ¥2,000.",
+agree:"Onaylıyorsanız önce debit veya credit card ile ödeme gerekir. Ödeme onayından sonra araç kontrolü başlar.",
+notmove:"Araç hareket etmiyorsa konum, araç adı ve sorunu forma yazın.",
+repair:"Tamir için araç adı, yıl ve belirtileri yazın.",
+port:"Liman teslimi için mevcut konum ve hedef limanı yazın.",
+formGo:"Teklif formuna git",
+map:"Google Maps mesafe kontrolü",
+pay:"Kart ile öde",
+voice:"Sesli giriş kullanılabilir."
+};
+AI_TEXT.si={
+head:"Sakura Recovery AI — Customer Support",
+welcome:"Sakura Recovery AI වෙත සාදරයෙන් පිළිගනිමු. Vehicle check, repair, recovery සහ port delivery සඳහා help ලබා ගත හැක. 3km දක්වා vehicle check charge ¥2,000.",
+select:"ඔබට අවශ්‍ය සේවාව තෝරන්න.",
+check:"Vehicle check request noted. Form එකේ Vehicle Current Location enter කරන්න.",
+distanceAsk:"Google Maps distance check කරලා example: 4.5km ලෙස type කරන්න.",
+priceIntro:"Vehicle check fee every 3km ¥2,000.",
+agree:"Agree නම් first debit card හෝ credit card payment අවශ්‍යයි. Payment confirm වුනාම vehicle check start වෙයි.",
+notmove:"Vehicle move වෙන්නේ නැත්නම් location, vehicle name සහ problem form එකට දාන්න.",
+repair:"Repair සඳහා vehicle name, year සහ symptoms දෙන්න.",
+port:"Port delivery සඳහා current location සහ destination port දෙන්න.",
+formGo:"Estimate Form වෙත යන්න",
+map:"Google Maps distance check",
+pay:"Card Payment",
+voice:"Voice input available."
+};
+
+function aiPack(){return AI_TEXT[currentLang]||AI_TEXT.en;}
+function updateAIHead(){const h=document.getElementById("aiHead");if(h)h.innerHTML=aiPack().head;}
+function toggleAI(){const box=document.getElementById("aiBox"),body=document.getElementById("aiBody");box.style.display=box.style.display==="block"?"none":"block";updateAIHead();if(!body.dataset.started)startAI();}
+function aiMsg(text,type="bot",speak=false){const body=document.getElementById("aiBody"),div=document.createElement("div");div.className="ai-msg "+(type==="user"?"ai-user":"ai-bot");div.innerHTML=text;body.appendChild(div);body.scrollTop=body.scrollHeight;if(speak) speakAI(div.innerText);}
+function startAI(){document.getElementById("aiBody").dataset.started="yes";aiMsg(aiPack().welcome+"<div class='ai-small'>"+aiPack().voice+"</div>","bot",true);aiMsg(`<div class="ai-lang-row"><div class="ai-quick" onclick="setAILang('ja')">日本語</div><div class="ai-quick" onclick="setAILang('en')">English</div><div class="ai-quick" onclick="setAILang('zh')">中文</div><div class="ai-quick" onclick="setAILang('es')">Español</div><div class="ai-quick" onclick="setAILang('ru')">Русский</div><div class="ai-quick" onclick="setAILang('vi')">Tiếng Việt</div><div class="ai-quick" onclick="setAILang('ko')">한국어</div><div class="ai-quick" onclick="setAILang('ar')">العربية</div><div class="ai-quick" onclick="setAILang('ur')">Roman Urdu</div><div class="ai-quick" onclick="setAILang('bn')">বাংলা</div><div class="ai-quick" onclick="setAILang('fa')">فارسی</div><div class="ai-quick" onclick="setAILang('tr')">Türkçe</div><div class="ai-quick" onclick="setAILang('si')">සිංහල</div></div>`);showAIOptions();}
+function setAILang(lang){document.getElementById("siteLang").value=lang;changeLang(lang);updateAIHead();aiMsg(lang,"user");aiMsg(aiPack().welcome,"bot",true);showAIOptions();}
+function showAIOptions(){const p=aiPack();aiMsg(p.select);aiMsg(`<div class="ai-quick" onclick="quickAI('check')">🔍 Vehicle Check / Inspection</div><div class="ai-quick" onclick="quickAI('notmove')">🚗 Vehicle not moving</div><div class="ai-quick" onclick="quickAI('repair')">🔧 Repair</div><div class="ai-quick" onclick="quickAI('port')">🚢 Port Delivery</div><div class="ai-quick" onclick="quickAI('price')">💴 Distance Rate</div>`);}
+function quickAI(key){aiMsg(key,"user");const p=aiPack();if(key==="check"||key==="price"){showDistanceGuide();return;}aiMsg(p[key]||p.notmove,"bot",true);aiMsg(`<div class="ai-quick" onclick="document.getElementById('requestForm').scrollIntoView({behavior:'smooth'})">${p.formGo}</div>`);}
+function getVehicleLocation(){const el=document.querySelector('[name="vehicle_current_location"]');return el&&el.value.trim()?el.value.trim():"";}
+function mapsUrl(){const origin=encodeURIComponent(COMPANY_ADDRESS);const dest=encodeURIComponent(getVehicleLocation()||"Okinawa vehicle location");return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&travelmode=driving`;}
+function showDistanceGuide(){const p=aiPack();aiMsg(`${p.check}<br><br>${p.priceIntro}<br><b>0〜3km = ¥2,000</b><br><b>3.1〜6km = ¥4,000</b><br><b>6.1〜9km = ¥6,000</b><br><div class="ai-small">${p.distanceAsk}</div><a class="ai-pay" href="${mapsUrl()}" target="_blank">${p.map}</a>`,"bot",true);}
+function calcDistancePrice(km){const blocks=Math.max(1,Math.ceil(km/BASE_KM));return blocks*BASE_PRICE;}
+function showEstimate(km){const p=aiPack();const price=calcDistancePrice(km);lastEstimate={km,price};aiMsg(`Distance: <b>${km} km</b><br>Vehicle check charge: <b>¥${price.toLocaleString()}</b><br><br>${p.agree}<a class="ai-pay" onclick="payNow()">${p.pay} ¥${price.toLocaleString()}</a><div class="ai-small">Debit Card / Credit Card only</div>`,"bot",true);}
+function payNow(){const p=aiPack();if(CARD_PAYMENT_URL==="#"){aiMsg("Card payment link is not connected yet. Please connect Stripe/Square payment link in CARD_PAYMENT_URL, or submit the form and staff will send payment link.","bot",true);document.getElementById('requestForm').scrollIntoView({behavior:'smooth'});return;}window.open(CARD_PAYMENT_URL,"_blank");}
+function replyAI(text){const s=text.toLowerCase();const kmMatch=s.match(/(\d+(?:\.\d+)?)\s*(km|キロ|公里|км|킬로|كيلو)/i);if(kmMatch){showEstimate(parseFloat(kmMatch[1]));return;}if(s.includes("agree")||s.includes("ok")||s.includes("yes")||s.includes("同意")||s.includes("はい")||s.includes("agree yeh")){if(lastEstimate){payNow();return;}}let key="notmove";if(s.includes("check")||s.includes("inspection")||s.includes("見")||s.includes("確認")||s.includes("distance")||s.includes("rate")||s.includes("料金")||s.includes("price")||s.includes("cost")||s.includes("distance"))key="check";else if(s.includes("repair")||s.includes("修理"))key="repair";else if(s.includes("port")||s.includes("港"))key="port";quickAI(key);}
+function sendAI(){const input=document.getElementById("aiInput"),text=input.value.trim();if(!text)return;aiMsg(text,"user");input.value="";setTimeout(()=>replyAI(text),250);}
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&document.activeElement.id==="aiInput")sendAI();});
+function aiSpeechLang(){
+const langMap={
+ja:"ja-JP",
+en:"en-US",
+zh:"zh-CN",
+es:"es-ES",
+ru:"ru-RU",
+vi:"vi-VN",
+ko:"ko-KR",
+ar:"ar-EG",
+ur:"hi-IN",
+bn:"bn-BD",
+fa:"fa-IR",
+tr:"tr-TR",
+si:"si-LK"
+};
+return langMap[currentLang]||"en-US";
+}
+function speakAI(text){
+try{
+if(!('speechSynthesis' in window))return;
+window.speechSynthesis.cancel();
+const cleanText=String(text).replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+const u=new SpeechSynthesisUtterance(cleanText);
+u.lang=aiSpeechLang();
+u.rate=(currentLang==="ar"||currentLang==="fa"||currentLang==="bn")?0.82:0.88;
+u.pitch=(currentLang==="ar"||currentLang==="fa")?0.92:0.98;
+u.volume=1;
+const voices=window.speechSynthesis.getVoices();
+const exact=voices.find(v=>v.lang&&v.lang.toLowerCase()===u.lang.toLowerCase());
+const sameBase=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith(u.lang.toLowerCase().slice(0,2)));
+if(exact)u.voice=exact; else if(sameBase)u.voice=sameBase;
+setTimeout(()=>window.speechSynthesis.speak(u),120);
+}catch(e){}
+}
+function startVoiceInput(){const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SpeechRecognition){aiMsg("Voice input is not supported in this browser. Please use Chrome.");return;}const rec=new SpeechRecognition();rec.lang=aiSpeechLang();rec.interimResults=false;rec.maxAlternatives=1;rec.onresult=e=>{document.getElementById("aiInput").value=e.results[0][0].transcript;sendAI();};rec.start();}
+
+if("speechSynthesis" in window){window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();}
+changeLang("ja");
+updateAIHead();
+</script>
+
+
+<script>
+/* Dynamic Sakura Recovery payment amount
+   IMPORTANT:
+   Static Stripe Payment Links cannot change amount by URL.
+   This button sends amount/km to n8n, where n8n should create a Stripe Checkout Session
+   and redirect customer to the correct payment page.
+*/
+const PAYMENT_CHECKOUT_WEBHOOK = "https://n8n.sakurajapanbot.tech/webhook/sakura-recovery-create-payment";
+let currentInspectionFeeYen = 2000;
+let submittedCustomerData = {};
+
+function calcInspectionFeeYen(km){
+  const n = parseFloat(km || "0");
+  if(!n || n <= 3) return 2000;
+  return Math.ceil(n / 3) * 2000;
+}
+function formatYen(n){
+  return "¥" + Number(n || 0).toLocaleString("ja-JP");
+}
+function getDistanceKmValue(){
+  const input = document.getElementById("distanceKm");
+  return input ? (input.value || "0") : "0";
+}
+function getCurrentFeeYen(){
+  if(submittedCustomerData && submittedCustomerData.inspection_fee_yen){
+    return Number(submittedCustomerData.inspection_fee_yen);
+  }
+  return calcInspectionFeeYen(getDistanceKmValue());
+}
+function updateDynamicPaymentButton(){
+  currentInspectionFeeYen = getCurrentFeeYen();
+
+  const feeHidden = document.getElementById("inspectionFeeYen");
+  if(feeHidden) feeHidden.value = String(currentInspectionFeeYen);
+
+  const payAmount = document.getElementById("payAmountText");
+  if(payAmount) payAmount.textContent = formatYen(currentInspectionFeeYen);
+
+  const note = document.getElementById("paymentFinalNote");
+  if(note){
+    note.innerHTML = "✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>" +
+      "Payment Amount: <b>" + formatYen(currentInspectionFeeYen) + "</b> / Distance: <b>" +
+      ((submittedCustomerData && submittedCustomerData.inspection_distance_km) || getDistanceKmValue() || "0") + " km</b>";
+  }
+
+  const btn = document.getElementById("dynamicPayBtn");
+  if(btn){
+    const q = new URLSearchParams({
+      amount_yen: String(currentInspectionFeeYen),
+      distance_km: String((submittedCustomerData && submittedCustomerData.inspection_distance_km) || getDistanceKmValue() || "0"),
+      customer_name: submittedCustomerData.customer_name || "",
+      phone: submittedCustomerData.phone || "",
+      email: submittedCustomerData.email || "",
+      vehicle_name: submittedCustomerData.vehicle_name || "",
+      vehicle_problem: submittedCustomerData.vehicle_problem || "",
+      language: window.currentLang || "ja",
+      service: "Sakura Recovery Inspection Fee"
+    });
+    btn.href = PAYMENT_CHECKOUT_WEBHOOK + "?" + q.toString();
+  }
+}
+document.addEventListener("input", function(e){
+  if(e.target && e.target.id === "distanceKm") updateDynamicPaymentButton();
+});
+document.addEventListener("DOMContentLoaded", updateDynamicPaymentButton);
+</script>
+
+
+
+<script>
+/* Sakura Recovery dynamic fee patch */
+(function(){
+  const oldUpdateInspectionFee = window.updateInspectionFee;
+  window.updateInspectionFee = function(){
+    if(typeof oldUpdateInspectionFee === "function") oldUpdateInspectionFee();
+    if(typeof updateDynamicPaymentButton === "function") updateDynamicPaymentButton();
+  };
+})();
+</script>
+
+
+
+<script>
+/* =========================================================
+   INSPECTION FEE CALCULATOR — MULTI LANGUAGE PATCH
+   This patch makes the calculator section change with the site language.
+========================================================= */
+const FEE_TEXT = {
+  ja:{title:"🧮 点検料金計算", note:"車両点検料金は距離によって自動計算されます。", distance:"距離 (km)", placeholder:"距離をkmで入力してください（例: 4.5）", estimated:"概算料金", t1:"0〜3 km", t2:"3.1〜6 km", t3:"6.1〜9 km", payTitle:"💳 今すぐ支払い", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>支払い金額: <b>{amount}</b> / 距離: <b>{distance} km</b>", unlocked:"✅ 依頼が送信されました。Pay Now が利用できます。", required:"必須"},
+  en:{title:"🧮 Inspection Fee Calculator", note:"Vehicle inspection fee is calculated automatically by distance.", distance:"Distance (km)", placeholder:"Enter distance in km (e.g. 4.5)", estimated:"Estimated Fee", t1:"0–3 km", t2:"3.1–6 km", t3:"6.1–9 km", payTitle:"💳 Pay Now", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>Payment Amount: <b>{amount}</b> / Distance: <b>{distance} km</b>", unlocked:"✅ Request submitted. Pay Now is unlocked.", required:"Required"},
+  zh:{title:"🧮 检查费用计算器", note:"车辆检查费用会根据距离自动计算。", distance:"距离 (km)", placeholder:"请输入距离 km（例: 4.5）", estimated:"预估费用", t1:"0–3 km", t2:"3.1–6 km", t3:"6.1–9 km", payTitle:"💳 立即付款", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>付款金额: <b>{amount}</b> / 距离: <b>{distance} km</b>", unlocked:"✅ 请求已提交。Pay Now 已解锁。", required:"必填"},
+  es:{title:"🧮 Calculadora de tarifa de inspección", note:"La tarifa de inspección se calcula automáticamente según la distancia.", distance:"Distancia (km)", placeholder:"Ingrese la distancia en km (ej. 4.5)", estimated:"Tarifa estimada", t1:"0–3 km", t2:"3.1–6 km", t3:"6.1–9 km", payTitle:"💳 Pagar ahora", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>Monto de pago: <b>{amount}</b> / Distancia: <b>{distance} km</b>", unlocked:"✅ Solicitud enviada. Pay Now está desbloqueado.", required:"Obligatorio"},
+  ru:{title:"🧮 Калькулятор стоимости осмотра", note:"Стоимость осмотра автомобиля автоматически рассчитывается по расстоянию.", distance:"Расстояние (км)", placeholder:"Введите расстояние в км (например: 4.5)", estimated:"Примерная стоимость", t1:"0–3 км", t2:"3.1–6 км", t3:"6.1–9 км", payTitle:"💳 Оплатить сейчас", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>Сумма оплаты: <b>{amount}</b> / Расстояние: <b>{distance} км</b>", unlocked:"✅ Заявка отправлена. Pay Now разблокирован.", required:"Обязательно"},
+  vi:{title:"🧮 Tính phí kiểm tra", note:"Phí kiểm tra xe được tự động tính theo khoảng cách.", distance:"Khoảng cách (km)", placeholder:"Nhập khoảng cách km (ví dụ: 4.5)", estimated:"Phí ước tính", t1:"0–3 km", t2:"3.1–6 km", t3:"6.1–9 km", payTitle:"💳 Thanh toán ngay", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>Số tiền thanh toán: <b>{amount}</b> / Khoảng cách: <b>{distance} km</b>", unlocked:"✅ Yêu cầu đã gửi. Pay Now đã mở khóa.", required:"Bắt buộc"},
+  ko:{title:"🧮 점검 요금 계산기", note:"차량 점검 요금은 거리에 따라 자동 계산됩니다.", distance:"거리 (km)", placeholder:"거리를 km로 입력하세요 (예: 4.5)", estimated:"예상 요금", t1:"0–3 km", t2:"3.1–6 km", t3:"6.1–9 km", payTitle:"💳 지금 결제", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>결제 금액: <b>{amount}</b> / 거리: <b>{distance} km</b>", unlocked:"✅ 요청이 전송되었습니다. Pay Now가 열렸습니다.", required:"필수"},
+  ar:{title:"🧮 حاسبة رسوم الفحص", note:"يتم حساب رسوم فحص المركبة تلقائياً حسب المسافة.", distance:"المسافة (كم)", placeholder:"أدخل المسافة بالكيلومتر (مثال: 4.5)", estimated:"الرسوم التقديرية", t1:"0–3 كم", t2:"3.1–6 كم", t3:"6.1–9 كم", payTitle:"💳 ادفع الآن", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>مبلغ الدفع: <b>{amount}</b> / المسافة: <b>{distance} كم</b>", unlocked:"✅ تم إرسال الطلب. تم تفعيل Pay Now.", required:"مطلوب"},
+  ur:{title:"🧮 Inspection Fee Calculator", note:"Vehicle inspection fee distance ke hisaab se automatic calculate hoti hai.", distance:"Distance (km)", placeholder:"Distance km me likhein (example: 4.5)", estimated:"Estimated Fee", t1:"0–3 km", t2:"3.1–6 km", t3:"6.1–9 km", payTitle:"💳 Pay Now", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>Payment Amount: <b>{amount}</b> / Distance: <b>{distance} km</b>", unlocked:"✅ Request submit ho gayi. Pay Now unlock ho gaya.", required:"Required"},
+  bn:{title:"🧮 Inspection Fee Calculator", note:"Vehicle inspection fee distance অনুযায়ী automatic calculate হয়।", distance:"Distance (km)", placeholder:"Distance km লিখুন (যেমন: 4.5)", estimated:"Estimated Fee", t1:"0–3 km", t2:"3.1–6 km", t3:"6.1–9 km", payTitle:"💳 Pay Now", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>Payment Amount: <b>{amount}</b> / Distance: <b>{distance} km</b>", unlocked:"✅ Request submit হয়েছে। Pay Now unlock হয়েছে।", required:"Required"},
+  fa:{title:"🧮 محاسبه هزینه بازدید", note:"هزینه بازدید خودرو بر اساس فاصله به صورت خودکار محاسبه می‌شود.", distance:"فاصله (km)", placeholder:"فاصله را به کیلومتر وارد کنید (مثال: 4.5)", estimated:"هزینه تخمینی", t1:"0–3 km", t2:"3.1–6 km", t3:"6.1–9 km", payTitle:"💳 پرداخت کنید", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>مبلغ پرداخت: <b>{amount}</b> / فاصله: <b>{distance} km</b>", unlocked:"✅ درخواست ارسال شد. Pay Now فعال شد.", required:"Required"},
+  tr:{title:"🧮 Muayene Ücreti Hesaplayıcı", note:"Araç muayene ücreti mesafeye göre otomatik hesaplanır.", distance:"Mesafe (km)", placeholder:"Mesafeyi km olarak girin (örn: 4.5)", estimated:"Tahmini Ücret", t1:"0–3 km", t2:"3.1–6 km", t3:"6.1–9 km", payTitle:"💳 Şimdi Öde", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>Ödeme Tutarı: <b>{amount}</b> / Mesafe: <b>{distance} km</b>", unlocked:"✅ Talep gönderildi. Pay Now açıldı.", required:"Gerekli"},
+  si:{title:"🧮 Inspection Fee Calculator", note:"Vehicle inspection fee එක distance අනුව automatic calculate වේ.", distance:"Distance (km)", placeholder:"Distance km වලින් type කරන්න (example: 4.5)", estimated:"Estimated Fee", t1:"0–3 km", t2:"3.1–6 km", t3:"6.1–9 km", payTitle:"💳 Pay Now", payNote:"✅ Visa / Mastercard / Debit Card / Apple Pay / Google Pay / PayPay<br>Payment Amount: <b>{amount}</b> / Distance: <b>{distance} km</b>", unlocked:"✅ Request submitted. Pay Now unlocked.", required:"Required"}
+};
+
+function getFeeLang(){
+  return (window.currentLang || currentLang || "ja");
+}
+function feePack(){
+  return FEE_TEXT[getFeeLang()] || FEE_TEXT.en;
+}
+function updateStaticFeeTexts(){
+  const p = feePack();
+  const title = document.querySelector("[data-fee-title]");
+  if(title) title.textContent = p.title;
+  const note = document.querySelector("[data-fee-note]");
+  if(note) note.textContent = p.note;
+  const dist = document.querySelector("[data-fee-distance]");
+  if(dist) dist.textContent = p.distance;
+  const input = document.getElementById("distanceKm");
+  if(input) input.placeholder = p.placeholder;
+  if(input && input.nextElementSibling && input.nextElementSibling.classList.contains("error-note")){
+    input.nextElementSibling.textContent = p.required;
+  }
+  const cells = document.querySelectorAll(".fee-table div");
+  if(cells[0]) cells[0].innerHTML = p.t1 + "<br>¥2,000";
+  if(cells[1]) cells[1].innerHTML = p.t2 + "<br>¥4,000";
+  if(cells[2]) cells[2].innerHTML = p.t3 + "<br>¥6,000";
+  const payTitle = document.querySelector(".payment-action-title");
+  if(payTitle) payTitle.textContent = p.payTitle;
+  const unlocked = document.getElementById("paymentUnlockedMsg");
+  if(unlocked) unlocked.textContent = p.unlocked;
+}
+
+const oldUpdateDynamicPaymentButton = window.updateDynamicPaymentButton;
+window.updateDynamicPaymentButton = function(){
+  if(typeof oldUpdateDynamicPaymentButton === "function") oldUpdateDynamicPaymentButton();
+  updateStaticFeeTexts();
+  const p = feePack();
+  const fee = (typeof currentInspectionFeeYen !== "undefined") ? currentInspectionFeeYen : (typeof getCurrentFeeYen === "function" ? getCurrentFeeYen() : 2000);
+  const distance = (submittedCustomerData && submittedCustomerData.inspection_distance_km) || (typeof getDistanceKmValue === "function" ? getDistanceKmValue() : "0") || "0";
+  const result = document.getElementById("feeResult");
+  if(result) result.textContent = p.estimated + ": " + formatYen(fee);
+  const note = document.getElementById("paymentFinalNote");
+  if(note){
+    note.innerHTML = p.payNote.replace("{amount}", formatYen(fee)).replace("{distance}", distance);
+  }
+};
+
+window.updateInspectionFeeLang = function(){
+  updateStaticFeeTexts();
+  if(typeof window.updateDynamicPaymentButton === "function") window.updateDynamicPaymentButton();
+};
+
+document.addEventListener("DOMContentLoaded", function(){
+  window.updateInspectionFeeLang();
+});
+setTimeout(function(){
+  window.updateInspectionFeeLang();
+}, 50);
+</script>
+
+</body>
+</html>
